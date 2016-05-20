@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('stockmanage.commodityclassification');
+});
+
+Route::get('test', function () {
+    return view('test');
 });

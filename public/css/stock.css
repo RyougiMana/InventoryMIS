@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blue {
+    background: #bcd4ec;
+}
+
+.gray {
+    background: #e0e0e0;
+}
