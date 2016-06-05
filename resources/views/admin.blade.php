@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap-responsive.min.css') }}"/>
-    @yield('css-field')
+    @yield('css-file')
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">

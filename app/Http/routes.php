@@ -11,10 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('stockmanage.commodityclassification');
+
+/*******************RBAC**********************/
+
+Route::get('/', 'InventoryController@index');
+
+/*********************************************/
+
+Route::get('commodity', function () {
+    return view('stockmanage.commodity');
+});
+
+Route::get('stock', function () {
+    return view('stockmanage.stock');
+});
+
+Route::get('receipt', function () {
+    return view('stockmanage.receipt');
 });
 
 Route::get('test', function () {
     return view('test');
+});
+
+Route::get('test2', function () {
+    return view('test2');
 });

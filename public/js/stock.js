@@ -6,11 +6,11 @@ $(document).ready(function () {
     var isHidden = false;
     $(".classification").click(function () {
         if (!isHidden) {
-            $(".commodity").hide();
+            $(".commodity").slideUp();
             isHidden = true;
         }
         else {
-            $(".commodity").show();
+            $(".commodity").slideDown();
             isHidden = false;
         }
     });
@@ -29,8 +29,18 @@ $(document).ready(function () {
 
     /* modify and delete */
     $(".modify").click(function () {
-
+        $(".modify-panel").slideToggle("slow");
     });
+
+    /* text area reset */
+    $(".reset").click(function () {
+        $(".classification-input").innerText = "";
+    });
+
+    $(".commodity-detail").click(function () {
+        $
+    });
+
 
 });
 
