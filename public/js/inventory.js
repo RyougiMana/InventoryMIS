@@ -31,8 +31,16 @@ $(document).ready(function () {
 
     /* get commodity or its parent's is and information */
     $(".classification").click(function () {
-        var classificationName = target.event().innerHTML;
-        alert(classificationName);
+        alert($(this).text())
+    })
+
+    $(".commodity").click(function () {
+        alert($(this).text())
+    })
+
+    /* switch tabs */
+    $(function () {
+        $('#myTab li:eq(1) a').tab('show');
     });
 
 });

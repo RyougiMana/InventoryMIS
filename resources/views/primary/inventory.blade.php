@@ -33,7 +33,6 @@
         <div class="row-fluid">
             <div class="col-md-8">
                 <h4>商品分类管理</h4>
-
                 <p>已有商品分类 xx 个,上周新增 xx 个.</p>
             </div>
             <div class="col-md-4">
@@ -50,15 +49,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-2"></div>
-            <div class="col-md-2">
-                {{--<button type="submit" class="btn btn-default" data-toggle="modal"--}}
-                {{--data-target="#myModal">添加商品分类--}}
-                {{--</button>--}}
-                {{--<button type="submit" class="btn btn-default" data-toggle="modal"--}}
-                {{--data-target="#myModal">添加商品--}}
-                {{--</button>--}}
-                {{--<br/>--}}
-                {{--<br/>--}}
+            <div class="col-md-3">
                 <a id="open">展开分类</a>
                 <ul class="list-group">
                     @foreach($commodityParents as $commodityParent)
@@ -75,67 +66,185 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col-md-6">
-                test
+            <div class="col-md-5">
+                <ul class="nav nav-tabs">
+                    <li><a href="#add-commodity-classification" tabindex="-1" data-toggle="tab">
+                            添加商品分类</a>
+                    </li>
+                    <li><a href="#add-commodity" tabindex="-1" data-toggle="tab">
+                            添加商品</a>
+                    </li>
+                    <li><a href="#modify-delete-commodity-classification" tabindex="-1" data-toggle="tab">
+                            删改商品分类</a>
+                    </li>
+                    <li><a href="#modify-delete-commodity" tabindex="-1" data-toggle="tab">
+                            删改商品</a>
+                    </li>
+                </ul>
+                <br/>
+                <br/>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="add-commodity-classification">
+                        {{--Add commodity classification--}}
+                        <div class="row-fluid">
+                            <div class="col-md-3 direction-word">
+                                <p>商品分类名称</p>
+                                <br/>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="商品分类名称">
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <br/>
+
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary btn-block">确定</button>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </div>
+                        {{--End add commodity classification--}}
+                    </div>
+                    <div class="tab-pane fade" id="add-commodity">
+                        {{--Add commodity--}}
+                        <div class="row-fluid">
+                            <div class="col-md-3 direction-word">
+                                <p>商品分类</p>
+                                <br/>
+
+                                <p>商品名称</p>
+                                <br/>
+
+                                <p>型号</p>
+                                <br/>
+
+                                <p>进价</p>
+                                <br/>
+
+                                <p>零售价</p>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="商品分类">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="商品名称">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="型号">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="进价">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="零售价">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <br/>
+
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block">确定</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        {{--End add commodity--}}
+                    </div>
+                    <div class="tab-pane fade" id="modify-delete-commodity-classification">
+                        {{--Modify and delete commodity classification--}}
+                        <div class="row-fluid">
+                            <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
+                                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    <strong>直接输入需要删改的商品分类名称</strong>或者<strong>在左侧选择商品分类</strong>.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 direction-word">
+                            <p>商品分类名称</p>
+                            <br/>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="商品分类名称">
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <br/>
+
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block">确定</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        {{--End modify and delete commodity classification--}}
+                    </div>
+                    <div class="tab-pane fade" id="modify-delete-commodity">
+                        {{--Modify and delete commodity--}}
+                        <div class="row-fluid">
+                            <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
+                                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    <strong>直接输入需要删改的商品名称</strong>或者<strong>在左侧选择商品</strong>.
+                                </div>
+                            </div>
+                            <div class="col-md-3 direction-word">
+                                <p>商品分类</p>
+                                <br/>
+
+                                <p>商品名称</p>
+                                <br/>
+
+                                <p>型号</p>
+                                <br/>
+
+                                <p>进价</p>
+                                <br/>
+
+                                <p>零售价</p>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="商品分类">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="商品名称">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="型号">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="进价">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="零售价">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <br/>
+
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-block">确定</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        {{--End modify and delete commodity--}}
+                    </div>
+                </div>
+
+
             </div>
             <div class="col-md-2"></div>
         </div>
     </div>
+@stop
 
-    <!-- 模态框（Modal） -->
-    {{--<div class="modal fade" id="myModal" tabindex="-1" role="dialog"--}}
-    {{--aria-labelledby="myModalLabel" aria-hidden="true">--}}
-    {{--<div class="modal-dialog">--}}
-    {{--<div class="modal-content">--}}
-    {{--<div class="modal-header">--}}
-    {{--<button type="button" class="close"--}}
-    {{--data-dismiss="modal" aria-hidden="true">--}}
-    {{--&times;--}}
-    {{--</button>--}}
-    {{--<h4 class="modal-title" id="myModalLabel">--}}
-    {{--添加商品分类/商品--}}
-    {{--</h4>--}}
-    {{--</div>--}}
-    {{--<div class="modal-body">--}}
-    {{--<div class="form-group">--}}
-    {{--<div class="row-fluid">--}}
-    {{--<div class="col-sm-4 modal-word">--}}
-    {{--<p>商品分类</p>--}}
-
-    {{--<p>商品名称</p>--}}
-
-    {{--<p>型号</p>--}}
-
-    {{--<p>进价</p>--}}
-
-    {{--<p>零售价</p>--}}
-    {{--</div>--}}
-    {{--<div class="col-sm-8">--}}
-    {{--<input type="text" class="form-control" placeholder="商品分类">--}}
-    {{--<br>--}}
-    {{--<input type="text" class="form-control" placeholder="商品名称">--}}
-    {{--<br>--}}
-    {{--<input type="text" class="form-control" placeholder="型号">--}}
-    {{--<br>--}}
-    {{--<input type="text" class="form-control" placeholder="进价">--}}
-    {{--<br>--}}
-    {{--<input type="text" class="form-control" placeholder="零售价">--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="modal-footer">--}}
-    {{--<button type="submit" class="btn btn-default" data-dismiss="modal">取消</button>--}}
-    {{--<button type="submit" class="btn btn-primary">确定</button>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<!-- /.modal-content -->--}}
-    {{--</div>--}}
-    {{--<!-- /.modal -->--}}
-
-        @stop
-
-        @section('js-file')
-            <script src="{{ asset('js/user.js') }}"></script>
-            <script src="{{ asset('js/inventory.js') }}"></script>
+@section('js-file')
+    <script src="{{ asset('js/user.js') }}"></script>
+    <script src="{{ asset('js/inventory.js') }}"></script>
 @stop

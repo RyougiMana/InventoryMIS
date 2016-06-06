@@ -31,6 +31,11 @@
     line-height: 300%;
 }
 
+.direction-word {
+    text-align: right;
+    line-height: 165%;
+}
+
 li {
     list-style-type: none;
 }
