@@ -106,6 +106,11 @@
                                     <button type="submit" class="btn btn-primary btn-block">确定</button>
                                 </div>
                                 <div class="col-md-2"></div>
+
+                                <br/>
+                                <br/>
+                                <br/>
+
                             </div>
                         </div>
                         {{--End add commodity classification--}}
@@ -150,6 +155,11 @@
                                 <button type="submit" class="btn btn-primary btn-block">确定</button>
                             </div>
                             <div class="col-md-2"></div>
+
+                            <br/>
+                            <br/>
+                            <br/>
+
                         </div>
                         {{--End add commodity--}}
                     </div>
@@ -165,6 +175,8 @@
                             </div>
                         </div>
                         <div class="col-md-3 direction-word">
+                            <p>分类原名称</p>
+                            <br/>
                             <p>商品分类名称</p>
                             <br/>
                         </div>
@@ -172,16 +184,26 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="商品分类名称">
                                 <br>
+                                <input type="text" class="form-control" placeholder="商品分类新名称">
+                                <br>
                             </div>
                         </div>
                         <div class="row-fluid">
                             <br/>
 
-                            <div class="col-md-4"></div>
-                            <div class="col-md-6">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <button type="submit" class="btn btn-primary btn-block btn-danger">删除</button>
+                            </div>
+                            <div class="col-md-5">
                                 <button type="submit" class="btn btn-primary btn-block">确定</button>
                             </div>
-                            <div class="col-md-2"></div>
+                            <div class="col-md-1"></div>
+
+                            <br/>
+                            <br/>
+                            <br/>
+
                         </div>
                         {{--End modify and delete commodity classification--}}
                     </div>
@@ -196,6 +218,12 @@
                                 </div>
                             </div>
                             <div class="col-md-3 direction-word">
+                                <p>商品原分类</p>
+                                <br/>
+
+                                <p>商品原名称</p>
+                                <br/>
+
                                 <p>商品分类</p>
                                 <br/>
 
@@ -212,6 +240,10 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="商品原分类">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="商品原名称">
+                                    <br>
                                     <input type="text" class="form-control" placeholder="商品分类">
                                     <br>
                                     <input type="text" class="form-control" placeholder="商品名称">
@@ -227,11 +259,19 @@
                         <div class="row-fluid">
                             <br/>
 
-                            <div class="col-md-4"></div>
-                            <div class="col-md-6">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <button type="submit" class="btn btn-primary btn-block btn-danger">删除</button>
+                            </div>
+                            <div class="col-md-5">
                                 <button type="submit" class="btn btn-primary btn-block">确定</button>
                             </div>
-                            <div class="col-md-2"></div>
+                            <div class="col-md-1"></div>
+
+                            <br/>
+                            <br/>
+                            <br/>
+
                         </div>
                         {{--End modify and delete commodity--}}
                     </div>
