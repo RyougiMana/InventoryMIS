@@ -12,9 +12,13 @@
 */
 
 
-/*******************RBAC**********************/
+/*******************cxy**********************/
 
-Route::get('/', 'InventoryController@index');
+Route::get('inventory', 'InventoryController@index');
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 /*********************************************/
 

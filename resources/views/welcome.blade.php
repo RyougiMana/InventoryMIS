@@ -39,13 +39,6 @@
 <div class="container">
     <div class="content">
         <div class="title">Laravel 5</div>
-        {{--@if(count($users))--}}
-        {{--@foreach($users as $user)--}}
-        {{--<user>--}}
-        {{--<p>{{ $user }}</p>--}}
-        {{--</user>--}}
-        {{--@endforeach--}}
-        {{--@endif--}}
     </div>
 </div>
 </body>

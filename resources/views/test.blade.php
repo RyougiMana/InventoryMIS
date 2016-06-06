@@ -1,51 +1,66 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <title>jQuery控制Hover</title>
-
-    <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap-responsive.min.css') }}"/>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <title> New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".list-group-item").hover(function () {
-                $(this).addClass("blue");
-            }, function () {
-                $(this).removeClass("blue");
-            });
-        });
-    </script>
-    <style>
+        window.onload = function () {
+            //写入
+            var oneInner = document.createElement("div");
+            oneInner.setAttribute("style", "background:#663398;position:absolute;width:100px;height:100px;border:solid 3px #2F74A7;cursor:pointer;");
+            var oneButton = document.createElement("input");
+            oneButton.setAttribute("type", "button");
+            oneButton.setAttribute("value", "x");
+            if (oneButton.style.cssFloat) {
+                oneButton.style.cssFloat = "right"
+            }
+            else {
+                oneButton.style.styleFloat = "right"
+            }
+            oneInner.appendChild(oneButton);
+            document.body.appendChild(oneInner);
 
-        .blue {
-            background: #bcd4ec;
+            //定时器
+            var a1a = setInterval(moves, 100);
+            //函数
+            var x = 10;
+            var y = 10;
+
+            function moves() {
+                var tops = oneInner.offsetTop
+                var lefts = oneInner.offsetLeft
+                if (lefts >= document.documentElement.clientWidth - oneInner.offsetWidth || lefts <= 0) {
+                    x = -x
+                }
+                if (tops >= document.documentElement.clientHeight - oneInner.offsetHeight || tops <= 0) {
+                    y = -y
+                }
+
+                tops += y;
+                lefts += x;
+                oneInner.style.top = tops + "px"
+                oneInner.style.left = lefts + "px"
+            }
+
+            //悬停停止
+            oneInner.onmouseover = function () {
+                clearInterval(a1a);
+            }
+            //放手继续运动
+            oneInner.onmouseout = function () {
+                a1a = setInterval(moves, 100);
+            }
+            //删除
+            oneButton.onclick = function () {
+                document.body.removeChild(oneInner);
+            }
         }
-
-    </style>
+    </script>
 </head>
 <body>
-<ul class="list-group">
-    <li class="list-group-item">a</li>
-    <li class="list-group-item">b</li>
-    <li class="list-group-item">d</li>
-    <li class="list-group-item">e</li>
-    <li>f</li>
-    <li>g</li>
-    <li>h</li>
-</ul>
-<ul id="ordered">
-    <li>a</li>
-    <li>b</li>
-    <li>d</li>
-    <li>e</li>
-    <li>f</li>
-    <li>g</li>
-    <li>h</li>
-</ul>
+
 </body>
 </html>
-
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/respond.min.js') }}"></script>
-<script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
