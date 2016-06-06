@@ -6,6 +6,10 @@
     background: #e0e0e0;
 }
 
+.commodity {
+    display: none;
+}
+
 .modify {
     cursor: pointer;
 }
@@ -25,4 +29,8 @@
 
 .modal-word {
     line-height: 300%;
+}
+
+li {
+    list-style-type: none;
 }

@@ -3,15 +3,17 @@
  */
 $(document).ready(function () {
     /* show & hide commodity classifications */
-    var isHidden = false;
-    $(".classification").click(function () {
+    var isHidden = true;
+    $("#open").click(function () {
         if (!isHidden) {
             $(".commodity").slideUp();
             isHidden = true;
+            document.getElementById('open').innerHTML = "展开分类";
         }
         else {
             $(".commodity").slideDown();
             isHidden = false;
+            document.getElementById('open').innerHTML = "收起分类";
         }
     });
 
@@ -27,15 +29,10 @@ $(document).ready(function () {
         $(this).removeClass("gray");
     });
 
-    /* text area reset */
-    $(".reset").click(function () {
-        $(".classification-input").innerText = "";
+    /* get commodity or its parent's is and information */
+    $(".classification").click(function () {
+        var classificationName = target.event().innerHTML;
+        alert(classificationName);
     });
-
-    $(".commodity-detail").click(function () {
-        $
-    });
-
 
 });
-
