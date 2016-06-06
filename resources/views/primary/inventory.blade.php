@@ -52,16 +52,14 @@
             <div class="col-md-3">
                 <a id="open">展开分类</a>
                 <ul class="list-group">
-                    @foreach($commodityParents as $commodityParent)
+                    @foreach($commodityList as $parent_id=>$tmpList)
                         <li class="list-group-item classification">
-                            <p>{{ $commodityParent->name }}</p>
+                            <p>{{ $parentList[$parent_id] }}</p>
                         </li>
-                        @foreach($commodityList as $commodity)
-                            @if($commodity->parent_id === $commodityParent->id)
-                                <li class="list-group-item commodity">
-                                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp{{ $commodity->name }}</p>
-                                </li>
-                            @endif
+                        @foreach($tmpList as $commodity)
+                            <li class="list-group-item commodity">
+                                <p>&nbsp&nbsp&nbsp&nbsp&nbsp{{ $commodity->name }}</p>
+                            </li>
                         @endforeach
                     @endforeach
                 </ul>
