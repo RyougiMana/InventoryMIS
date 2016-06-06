@@ -15,6 +15,7 @@
 /*******************cxy**********************/
 
 Route::get('inventory', 'InventoryController@index');
+Route::get('inventory/{id}', 'InventoryController@index');
 
 Route::get('/', function () {
     return view('welcome');
