@@ -31,11 +31,13 @@ $(document).ready(function () {
 
     /* get commodity or its parent's is and information */
     $(".classification").click(function () {
-        alert($(this).text())
+        document.getElementById('classification-name').setAttribute("value", $(this).text());
+//        alert($(this).text())
     })
 
     $(".commodity").click(function () {
-        alert($(this).text())
+        document.getElementById('commodity-name').setAttribute("value", $(this).text());
+//        alert($(this).text())
     })
 
     /* switch tabs */
