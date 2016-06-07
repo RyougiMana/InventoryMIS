@@ -86,30 +86,42 @@
                     <div class="tab-pane fade in active" id="add-commodity-classification">
                         {{--Add commodity classification--}}
                         <div class="row-fluid">
-                            <div class="col-md-3 direction-word">
-                                <p>商品分类名称</p>
-                                <br/>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="商品分类名称">
+                            <form method="post" action="inventory" accept-charset="UTF-8" class="form-horizontal">
+                                {{ csrf_field() }}
+                                <div class="col-md-3 direction-word">
+                                    <p>商品分类名称</p>
+                                    <br/>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="hidden" class="form-control" name="action"
+                                           value="add-commodity-classification"/>
+                                    <input type="text" class="form-control" name="name" placeholder="商品分类名称">
                                     <br>
                                 </div>
-                            </div>
-                            <div class="row-fluid">
-                                <br/>
+                                <div class="row-fluid">
+                                    <br/>
 
-                                <div class="col-md-4"></div>
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary btn-block">确定</button>
+                                    @if ($errors->any())
+                                        <br/>
+                                        <br/>
+                                        <ul class="list-group alert-danger">
+                                            @foreach($errors->all() as $error)
+                                                <li class="list-group-item">{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary btn-block">确定</button>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
                                 </div>
-                                <div class="col-md-2"></div>
-
-                                <br/>
-                                <br/>
-                                <br/>
-
-                            </div>
+                            </form>
                         </div>
                         {{--End add commodity classification--}}
                     </div>
@@ -133,6 +145,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
+                                    <input type="hidden" class="form-control" name="action" value="add-commodity"/>
                                     <input type="text" class="form-control" placeholder="商品分类">
                                     <br>
                                     <input type="text" class="form-control" placeholder="商品名称">
@@ -180,6 +193,8 @@
                         </div>
                         <div class="col-md-9">
                             <div class="form-group">
+                                <input type="hidden" class="form-control" name="action"
+                                       value="modify-commodity-classification"/>
                                 <input type="text" class="form-control" placeholder="商品分类名称">
                                 <br>
                                 <input type="text" class="form-control" placeholder="商品分类新名称">
@@ -238,6 +253,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
+                                    <input type="hidden" class="form-control" name="action" value="modify-commodity"/>
                                     <input type="text" class="form-control" placeholder="商品原分类">
                                     <br>
                                     <input type="text" class="form-control" placeholder="商品原名称">
