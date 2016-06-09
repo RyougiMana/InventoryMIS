@@ -32,12 +32,13 @@ $(document).ready(function () {
     /* get commodity or its parent's is and information */
     $(".classification").click(function () {
         document.getElementById('classification-name').setAttribute("value", $(this).text());
-//        alert($(this).text())
+        document.getElementById('commoditys-classification-name').setAttribute("value", $(this).text());
+        document.getElementById('new-commoditys-classification-name').setAttribute("value", $(this).text());
     })
 
     $(".commodity").click(function () {
-        document.getElementById('commodity-name').setAttribute("value", $(this).text());
-//        alert($(this).text())
+        document.getElementById('commoditys-name').setAttribute("value", $(this).text());
+        document.getElementById('new-commoditys-name').setAttribute("value", $(this).text());
     })
 
     /* switch tabs */
