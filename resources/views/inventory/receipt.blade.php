@@ -6,23 +6,14 @@
 
 @section('navbar')
     <ul class="nav navbar-nav">
-        <li><a href="#">商品管理</a></li>
+        <li><a href="inventory/commodity">商品管理</a></li>
+        <li><a href="inventory/receipt">库存单据</a></li>
         <li class="receipt-manage">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">库存管理 <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="#">库存查看</a></li>
                 <li><a href="#">库存盘点</a></li>
-            </ul>
-        </li>
-        <li class="receipt-manage">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">库存单据 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">赠送单</a></li>
-                <li><a href="#">报溢单</a></li>
-                <li><a href="#">报溢单</a></li>
-                <li><a href="#">报警单</a></li>
             </ul>
         </li>
     </ul>
@@ -217,6 +208,7 @@
                         <div class="col-md-3 direction-word">
                             <p>分类原名称</p>
                             <br/>
+
                             <p>商品分类名称</p>
                             <br/>
                         </div>
@@ -332,7 +324,7 @@
                                         <input type="text" class="form-control" name="retail_price" placeholder="零售价">
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                             <div class="row-fluid">
                                 <br/>
 
@@ -356,7 +348,7 @@
                             </div>
                         </form>
                         @if ($errors->any())
-                                <br/>
+                            <br/>
                             <ul class="list-group alert-danger">
                                 <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
@@ -383,6 +375,5 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/user.js') }}"></script>
     <script src="{{ asset('js/inventory.js') }}"></script>
 @stop

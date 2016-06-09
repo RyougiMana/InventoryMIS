@@ -10,35 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('commodity', 'CommodityController@index');
+Route::post('commodity', 'CommodityController@post');
 
-
-/*******************cxy**********************/
-
-Route::get('inventory', 'InventoryController@index');
-Route::post('inventory', 'InventoryController@post');
+Route::get('receipt', 'ReceiptController@index');
+Route::get('receipt/create', 'ReceiptController@create');
+Route::post('receipt/create', 'ReceiptController@store');
+Route::get('receipt/{id}', 'ReceiptController@show');
+Route::get('receipt/edit', 'ReceiptController@edit');
+Route::post('receipt/create', 'ReceiptController@update');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-/*********************************************/
-
-Route::get('commodity', function () {
-    return view('stockmanage.commodity');
-});
-
-Route::get('stock', function () {
-    return view('stockmanage.stock');
-});
-
-Route::get('receipt', function () {
-    return view('stockmanage.receipt');
-});
-
-Route::get('test', function () {
-    return view('test');
-});
-
-Route::get('test2', function () {
-    return view('test2');
-});
