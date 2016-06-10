@@ -1,7 +1,7 @@
 @extends('admin')
 
 @section('css-file')
-    <link rel="stylesheet" href="{{ asset('css/inventory.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/commodity.css') }}"/>
 @stop
 
 @section('navbar')
@@ -374,5 +374,5 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/inventory.js') }}"></script>
+    <script src="{{ asset('js/commodity.js') }}"></script>
 @stop

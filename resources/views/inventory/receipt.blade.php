@@ -1,13 +1,13 @@
 @extends('admin')
 
 @section('css-file')
-    <link rel="stylesheet" href="{{ asset('css/inventory.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/receipt.css') }}"/>
 @stop
 
 @section('navbar')
     <ul class="nav navbar-nav">
-        <li><a href="inventory/commodity">商品管理</a></li>
-        <li><a href="inventory/receipt">库存单据</a></li>
+        <li><a href="commodity">商品管理</a></li>
+        <li><a href="receipt">库存单据</a></li>
         <li class="receipt-manage">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">库存管理 <span class="caret"></span></a>
@@ -23,17 +23,8 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>商品分类管理</h4>
+                <h4>库存单据管理</h4>
 
-                <p>已有商品分类 {{ count($parentList) }} 个,上周新增 {{ count($commodityLastWeek) }} 个.</p>
-            </div>
-            <div class="col-md-4">
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="查找商品分类">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
-                </form>
             </div>
         </div>
     </div>
@@ -41,97 +32,213 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <a id="open">展开分类</a>
-                <ul class="list-group">
-                    @foreach($commodityList as $parent_id=>$tmpList)
-                        <li class="list-group-item classification">
-                            <p>{{ $parentList[$parent_id] }}</p>
-                        </li>
-                        @foreach($tmpList as $commodity)
-                            <li class="list-group-item commodity">
-                                <p>&nbsp&nbsp&nbsp&nbsp&nbsp{{ $commodity->name }}</p>
-                            </li>
-                        @endforeach
-                    @endforeach
-                </ul>
-            </div>
+            <div class="col-md-8">
 
-            <div class="col-md-5">
                 <ul class="nav nav-tabs">
                     <li><a href="#add-commodity-classification" tabindex="-1" data-toggle="tab">
-                            添加商品分类</a>
+                            赠送单</a>
                     </li>
                     <li><a href="#add-commodity" tabindex="-1" data-toggle="tab">
-                            添加商品</a>
+                            报溢单</a>
                     </li>
                     <li><a href="#modify-delete-commodity-classification" tabindex="-1" data-toggle="tab">
-                            删改商品分类</a>
+                            报损单</a>
                     </li>
                     <li><a href="#modify-delete-commodity" tabindex="-1" data-toggle="tab">
-                            删改商品</a>
+                            报警单</a>
                     </li>
                 </ul>
                 <br/>
                 <br/>
 
                 <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="add-commodity-classification">
-                        {{--Add commodity classification--}}
-                        <div class="row-fluid">
-                            <form method="post" action="inventory" accept-charset="UTF-8" class="form-horizontal">
-                                {{ csrf_field() }}
-                                <div class="col-md-3 direction-word">
-                                    <p>商品分类名称</p>
-                                    <br/>
-                                </div>
-                                <div class="col-md-9">
-                                    <input type="hidden" class="form-control" name="action"
-                                           value="add-commodity-classification"/>
-                                    <input type="text" class="form-control" name="name" placeholder="商品分类名称">
-                                    <br>
-                                </div>
-                                <div class="row-fluid">
-                                    <br/>
+                    <div class="tab-pane fade in active" id="present">
 
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary btn-block">确定</button>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                    <br/>
-                                    <br/>
-                                    <br/>
-
-                                </div>
-                            </form>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                按创建时间排序 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">只显示审批通过</a></li>
+                                <li><a href="#">只显示审批未通过</a></li>
+                            </ul>
                         </div>
 
-                        @if ($errors->any())
-                            <br/>
-                            <ul class="list-group alert-danger">
-                                <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                    aria-hidden="true">&times;</span></button>
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </ul>
-                        @endif
+                        <button class="btn btn-primary" data-toggle="modal"
+                                data-target="#myModal">
+                            创建单据
+                        </button>
 
-                        {{--End add commodity classification--}}
+                        <br/>
+                        <br/>
+
+                        {{--Present receipt--}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">赠送单</div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>创建时间</th>
+                                    <th>摘要</th>
+                                    <th>通过审批</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($presentReceiptList as $presentReceipt)
+                                    <tr>
+                                        <th scope="row">{{ $presentReceipt->id }}</th>
+                                        <td>{{ $presentReceipt->created_at }}</td>
+                                        <td>{{ $presentReceipt->is_approved }}</td>
+                                        <td>修改</td>
+                                        <td>删除</td>
+                                        <td>查看详情</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        {{--End present receipt--}}
                     </div>
-                    <div class="tab-pane fade" id="add-commodity">
-                        {{--Add commodity--}}
-                        <form method="post" action="inventory" accept-charset="UTF-8" class="form-horizontal">
-                            {{ csrf_field() }}
-                            <div class="row-fluid">
-                                <div class="col-md-3 direction-word">
-                                    <p>商品分类</p>
+                    <div class="tab-pane fade" id="overflow">
+                        {{--Overflow receipt--}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">报溢单</div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>创建时间</th>
+                                    <th>摘要</th>
+                                    <th>通过审批</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($overflowReceiptList as $overflowReceipt)
+                                    <tr>
+                                        <th scope="row">{{ $overflowReceipt->id }}</th>
+                                        <td>{{ $overflowReceipt->created_at }}</td>
+                                        <td>{{ $overflowReceipt->is_approved }}</td>
+                                        <td>修改</td>
+                                        <td>删除</td>
+                                        <td>查看详情</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        {{--End overflow receipt--}}
+                    </div>
+                    <div class="tab-pane fade" id="loss">
+                        {{--Loss receipt--}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">报损单</div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>创建时间</th>
+                                    <th>摘要</th>
+                                    <th>通过审批</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($lossReceiptList as $lossReceipt)
+                                    <tr>
+                                        <th scope="row">{{ $lossReceipt->id }}</th>
+                                        <td>{{ $lossReceipt->created_at }}</td>
+                                        <td>{{ $lossReceipt->is_approved }}</td>
+                                        <td>修改</td>
+                                        <td>删除</td>
+                                        <td>查看详情</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        {{--End loss receipt--}}
+                    </div>
+                    <div class="tab-pane fade" id="alert">
+                        {{--Alert receipt--}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">报警单</div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>创建时间</th>
+                                    <th>摘要</th>
+                                    <th>通过审批</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                    <th>..</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($alertReceiptList as $alertReceipt)
+                                    <tr>
+                                        <th scope="row">{{ $alertReceipt->id }}</th>
+                                        <td>{{ $alertReceipt->created_at }}</td>
+                                        <td>{{ $alertReceipt->is_approved }}</td>
+                                        <td>修改</td>
+                                        <td>删除</td>
+                                        <td>查看详情</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        {{--End alert receipt--}}
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        创建单据
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row-fluid">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="commodity_name" placeholder="商品名称">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" name="commodity_count" placeholder="商品数量">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary">
+                                添加商品
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--
+                      <p>商品分类</p>
                                     <br/>
 
                                     <p>商品名称</p>
@@ -159,221 +266,23 @@
                                         <input type="text" class="form-control" name="retail_price" placeholder="零售价">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row-fluid">
-                                <br/>
-
-                                <div class="col-md-4"></div>
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary btn-block">确定</button>
-                                </div>
-                                <div class="col-md-2"></div>
-
-                                <br/>
-                                <br/>
-                                <br/>
-
-                            </div>
-                        </form>
-
-                        @if ($errors->any())
-                            <br/>
-                            <ul class="list-group alert-danger">
-                                <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                    aria-hidden="true">&times;</span></button>
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </ul>
-                        @endif
-
-                        {{--End add commodity--}}
-                    </div>
-                    <div class="tab-pane fade" id="modify-delete-commodity-classification">
-                        {{--Modify and delete commodity classification--}}
-                        <div class="row-fluid">
-                            <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
-                                <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                                aria-hidden="true">&times;</span></button>
-                                    <strong>直接输入需要删改的商品分类名称</strong>或者<strong>在左侧选择商品分类</strong>.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 direction-word">
-                            <p>分类原名称</p>
-                            <br/>
-
-                            <p>商品分类名称</p>
-                            <br/>
-                        </div>
-                        <form method="post" action="inventory" accept-charset="UTF-8" class="form-horizontal">
-                            {{ csrf_field() }}
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <input type="hidden" class="form-control" name="action"
-                                           value="modify-commodity-classification"/>
-                                    <input type="text" class="form-control" id="classification-name" name="parent_name"
-                                           placeholder="商品分类名称">
-                                    <br>
-                                    <input type="text" class="form-control" name="new_name" placeholder="商品分类新名称">
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <br/>
-
-                                <div class="col-md-1"></div>
-                                <div class="col-md-5">
-                                    <button type="submit" name="action" value="delete-commodity-classification"
-                                            class="btn btn-primary btn-block btn-danger">删除
-                                    </button>
-                                </div>
-                                <div class="col-md-5">
-                                    <button type="submit" name="action" value="modify-commodity-classification"
-                                            class="btn btn-primary btn-block">确定
-                                    </button>
-                                </div>
-                                <div class="col-md-1"></div>
-
-                                <br/>
-                                <br/>
-                                <br/>
-
-                            </div>
-
-                            @if ($errors->any())
-                                <br/>
-                                <ul class="list-group alert-danger">
-                                    <div class="bs-example bs-example-standalone"
-                                         data-example-id="dismissible-alert-js">
-                                        <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                    aria-label="Close"><span
-                                                        aria-hidden="true">&times;</span></button>
-                                            @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </ul>
-                            @endif
-                        </form>
-
-                        {{--End modify and delete commodity classification--}}
-                    </div>
-                    <div class="tab-pane fade" id="modify-delete-commodity">
-                        {{--Modify and delete commodity--}}
-                        <form method="post" action="inventory" accept-charset="UTF-8" class="form-horizontal">
-                            {{ csrf_field() }}
-                            <div class="row-fluid">
-                                <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
-                                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                    aria-hidden="true">&times;</span></button>
-                                        <strong>直接输入需要删改的商品名称</strong>或者<strong>在左侧选择商品</strong>.
-                                    </div>
-                                </div>
-                                <div class="col-md-3 direction-word">
-                                    <p>商品原分类</p>
-                                    <br/>
-
-                                    <p>商品原名称</p>
-                                    <br/>
-
-                                    <p>商品分类</p>
-                                    <br/>
-
-                                    <p>商品名称</p>
-                                    <br/>
-
-                                    <p>型号</p>
-                                    <br/>
-
-                                    <p>进价</p>
-                                    <br/>
-
-                                    <p>零售价</p>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" name="action"
-                                               value="modify-commodity"/>
-                                        <input type="text" class="form-control" name="parent_name"
-                                               id="commoditys-classification-name" placeholder="商品原分类">
-                                        <br>
-                                        <input type="text" class="form-control" name="name" id="commoditys-name"
-                                               placeholder="商品原名称">
-                                        <br>
-                                        <input type="text" class="form-control" name="new_parent_name"
-                                               id="new-commoditys-classification-name" placeholder="商品分类">
-                                        <br>
-                                        <input type="text" class="form-control" name="new_name"
-                                               id="new-commoditys-name" placeholder="商品名称">
-                                        <br>
-                                        <input type="text" class="form-control" name="classification" placeholder="型号">
-                                        <br>
-                                        <input type="text" class="form-control" name="purchase_price" placeholder="进价">
-                                        <br>
-                                        <input type="text" class="form-control" name="retail_price" placeholder="零售价">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-fluid">
-                                <br/>
-
-                                <div class="col-md-1"></div>
-                                <div class="col-md-5">
-                                    <button type="submit" name="action" value="delete-commodity"
-                                            class="btn btn-primary btn-block btn-danger">删除
-                                    </button>
-                                </div>
-                                <div class="col-md-5">
-                                    <button type="submit" name="action" value="modify-commodity"
-                                            class="btn btn-primary btn-block">确定
-                                    </button>
-                                </div>
-                                <div class="col-md-1"></div>
-
-                                <br/>
-                                <br/>
-                                <br/>
-
-                            </div>
-                        </form>
-                        @if ($errors->any())
-                            <br/>
-                            <ul class="list-group alert-danger">
-                                <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close"><span
-                                                    aria-hidden="true">&times;</span></button>
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </ul>
-                        @endif
-                        {{--End modify and delete commodity--}}
-                    </div>
-
+                            </div>-->
                 </div>
-
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        创建
+                    </button>
+                </div>
             </div>
-            <div class="col-md-2"></div>
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal -->
     </div>
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/inventory.js') }}"></script>
+    <script src="{{ asset('js/receipt.js') }}"></script>
 @stop
