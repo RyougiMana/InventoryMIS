@@ -14,15 +14,11 @@ Route::get('commodity', 'CommodityController@index');
 Route::post('commodity', 'CommodityController@post');
 
 Route::resource('receipt', 'ReceiptController');
+Route::post('receipt/storeitem', 'ReceiptController@storeItem');
+Route::get('receipt/createpresent', 'ReceiptController@createPresent');
+Route::get('receipt/createoverflow', 'ReceiptController@createOverflow');
+Route::get('receipt/createloss', 'ReceiptController@createLoss');
+Route::get('receipt/createalert', 'ReceiptController@createAlert');
 
-//Route::get('receipt', 'ReceiptController@index');
-//Route::get('receipt/create', 'ReceiptController@create');
-//Route::post('receipt', 'ReceiptController@store');
-//Route::get('receipt/{id}', 'ReceiptController@show');
-//Route::get('receipt/{id}/edit', 'ReceiptController@edit');
-//Route::put('receipt/{id}', 'ReceiptController@update');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::resource('customer', 'CustomerController');

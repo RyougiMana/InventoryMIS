@@ -36,16 +36,16 @@
             <div class="col-md-8">
 
                 <ul class="nav nav-tabs">
-                    <li><a href="#add-commodity-classification" tabindex="-1" data-toggle="tab">
+                    <li><a href="#present" tabindex="-1" data-toggle="tab">
                             赠送单</a>
                     </li>
-                    <li><a href="#add-commodity" tabindex="-1" data-toggle="tab">
+                    <li><a href="#overflow" tabindex="-1" data-toggle="tab">
                             报溢单</a>
                     </li>
-                    <li><a href="#modify-delete-commodity-classification" tabindex="-1" data-toggle="tab">
+                    <li><a href="#loss" tabindex="-1" data-toggle="tab">
                             报损单</a>
                     </li>
-                    <li><a href="#modify-delete-commodity" tabindex="-1" data-toggle="tab">
+                    <li><a href="#alert" tabindex="-1" data-toggle="tab">
                             报警单</a>
                     </li>
                 </ul>
@@ -65,12 +65,45 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <form method="get" action="receipt/create" accept-charset="UTF-8" class="form-horizontal">
-                            {{ csrf_field() }}
-                            <button class="btn btn-primary">
-                                创建单据
-                            </button>
-                        </form>
+                        {{--<form method="get" action="receipt/create" accept-charset="UTF-8" class="form-horizontal">--}}
+                        {{--{{ csrf_field() }}--}}
+                        {{--<div class="btn-group" role="group" aria-label="...">--}}
+                        {{--<button type="button" class="btn btn-default">创建赠送单</button>--}}
+                        {{--<button type="button" class="btn btn-default">创建报溢单</button>--}}
+                        {{--<button type="button" class="btn btn-default">创建报损单</button>--}}
+                        {{--<button type="button" class="btn btn-default">创建报警单</button>--}}
+                        {{--</div>--}}
+                        {{--</form>--}}
+                        <div class="row-fluid">
+                            <div class="col-md-2">
+                                <form method="get" action="/receipt/createpresent" accept-charset="UTF-8"
+                                      class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default">创建赠送单</button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <form method="get" action="receipt/createoverflow" accept-charset="UTF-8"
+                                      class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default">创建报溢单</button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <form method="get" action="receipt/createloss" accept-charset="UTF-8"
+                                      class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default">创建报损单</button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <form method="get" action="receipt/createalert" accept-charset="UTF-8"
+                                      class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default">创建报警单</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br/>
@@ -89,8 +122,6 @@
                                     <th>摘要</th>
                                     <th>通过审批</th>
                                     <th>..</th>
-                                    <th>..</th>
-                                    <th>..</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -99,8 +130,6 @@
                                         <th scope="row">{{ $presentReceipt->id }}</th>
                                         <td>{{ $presentReceipt->created_at }}</td>
                                         <td>{{ $presentReceipt->is_approved }}</td>
-                                        <td>修改</td>
-                                        <td>删除</td>
                                         <td>查看详情</td>
                                     </tr>
                                 @endforeach
