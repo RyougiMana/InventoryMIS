@@ -25,21 +25,21 @@ $(document).ready(function () {
     //        });
     //});
 
-});
 
-function loadXMLDoc() {
-    var xmlhttp;
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-    else {// code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            alert("test");
-        }
-    }
-    xmlhttp.open("POST", "receipt/pending", true);
-    xmlhttp.send();
-}
+    //$("#receipt_add").click(function(){
+    //    var commodity_name = $("#commodity_name").val();
+    //    var commodity_count = $("#commodity_count").val();
+    //    $.ajax({
+    //        url: "receipt/pending",
+    //        type: 'POST',
+    //        dataType: 'text',
+    //        data:{'name': commodity_name, 'count': commodity_count},
+    //        success:function(data){
+    //            alert(data["result"]);
+    //        },
+    //        error:function(){
+    //            alert("failed");
+    //        }
+    //    })
+    //});
+});
