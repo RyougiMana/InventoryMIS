@@ -16,7 +16,7 @@ Route::post('commodity', 'CommodityController@post');
 Route::get('receipt', 'ReceiptController@index');
 Route::get('receipt/create', 'ReceiptController@create');
 Route::post('receipt/create', 'ReceiptController@store');
-Route::get('receipt/{id}', 'ReceiptController@show');
+Route::post('receipt/pending', 'ReceiptController@pending');
 Route::get('receipt/edit', 'ReceiptController@edit');
 Route::post('receipt/create', 'ReceiptController@update');
 

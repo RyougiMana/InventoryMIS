@@ -30,6 +30,7 @@
     </div>
     <br/>
     <div class="container-fluid">
+
         <div class="row-fluid">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -51,27 +52,27 @@
                 <br/>
                 <br/>
 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        按创建时间排序 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">只显示审批通过</a></li>
+                        <li><a href="#">只显示审批未通过</a></li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal">
+                    创建单据
+                </button>
+
+                <br/>
+                <br/>
+
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="present">
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                按创建时间排序 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">只显示审批通过</a></li>
-                                <li><a href="#">只显示审批未通过</a></li>
-                            </ul>
-                        </div>
-
-                        <button class="btn btn-primary" data-toggle="modal"
-                                data-target="#myModal">
-                            创建单据
-                        </button>
-
-                        <br/>
-                        <br/>
 
                         {{--Present receipt--}}
                         <div class="panel panel-default">
@@ -225,56 +226,58 @@
                 <div class="modal-body">
                     <div class="row-fluid">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="commodity_name" placeholder="商品名称">
+                            <input type="text" class="form-control" name="commodity_name" id="commodity_name"
+                                   placeholder="商品名称">
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" name="commodity_count" placeholder="商品数量">
+                            <input type="text" class="form-control" name="commodity_count" id="commodity_count"
+                                   placeholder="数量">
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" onclick="loadXMLDoc()" id="receipt_add">
                                 添加商品
                             </button>
                         </div>
                     </div>
+                    <br/>
 
-                    <!--
-                      <p>商品分类</p>
-                                    <br/>
-
-                                    <p>商品名称</p>
-                                    <br/>
-
-                                    <p>型号</p>
-                                    <br/>
-
-                                    <p>进价</p>
-                                    <br/>
-
-                                    <p>零售价</p>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" name="action" value="add-commodity"/>
-                                        <input type="text" class="form-control" name="parent_name" , placeholder="商品分类">
-                                        <br>
-                                        <input type="text" class="form-control" name="name" placeholder="商品名称">
-                                        <br>
-                                        <input type="text" class="form-control" name="classification" placeholder="型号">
-                                        <br>
-                                        <input type="text" class="form-control" name="purchase_price" placeholder="进价">
-                                        <br>
-                                        <input type="text" class="form-control" name="retail_price" placeholder="零售价">
-                                    </div>
-                                </div>
-                            </div>-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">单据信息</div>
+                        <table class="table" id="receipt_table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>商品名称</th>
+                                <th>数量</th>
+                                <th>删除</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>???</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default"
                             data-dismiss="modal">关闭
                     </button>
-                    <button type="button" class="btn btn-primary">
-                        创建
-                    </button>
+                    <div class="btn-group">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            创建
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">创建赠送单</a></li>
+                            <li><a href="#">创建报溢单</a></li>
+                            <li><a href="#">创建报损单</a></li>
+                            <li><a href="#">创建报警单</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- /.modal-content -->
