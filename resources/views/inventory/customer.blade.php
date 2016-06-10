@@ -63,9 +63,12 @@
                             <tbody>
                             @foreach($customerList as $customer)
                                 <tr>
-                                    <form method="get" action="customer/{customer}" accept-charset="UTF-8"
+                                    <form method="get" action="/customer/{name}" accept-charset="UTF-8"
                                           class="form-horizontal">
-                                        <td type="text" id="customer" name="name">{{ $customer->name }}</td>
+                                        <td>
+                                            <!--    <input type="text"  name="name" value={{ $customer->name }}>-->
+                                            {{ $customer->name }}
+                                        </td>
                                         @if($customer->is_saler == 1)
                                             <td>销售商</td>
                                         @else
