@@ -83,10 +83,14 @@
                         @endif
                     </table>
                 </div>
+                {!! $customerList->render() !!}
             </div>
             <div class="col-md-2"></div>
         </div>
     </div>
+    <br/>
+    <br/>
+    <br/>
 @stop
 
 @section('js-file')

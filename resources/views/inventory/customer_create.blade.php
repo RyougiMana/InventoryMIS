@@ -68,9 +68,26 @@
                 <p><input type="radio" name="is_saler" value="0"/>进货商</p>
 
                 <p><input type="radio" name="is_saler" value="1"/>销售商</p>
+                @if ($errors->any())
+                    <br/>
+                    <ul class="list-group alert-danger">
+                        <div class="bs-example bs-example-standalone" data-example-id="dismissible-alert-js">
+                            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </div>
+                        </div>
+                    </ul>
+                @endif
                 <button type="submit" class="btn btn-primary">
                     确定
                 </button>
+                <br/>
+                <br/>
             </div>
             <div class="col-md-4"></div>
         </div>
