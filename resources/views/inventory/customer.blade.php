@@ -6,12 +6,12 @@
 
 @section('navbar')
     <ul class="nav navbar-nav">
-        <li><a href="commodity">客户管理</a></li>
+        <li><a href="customer">客户管理</a></li>
         <li class="receipt-manage">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">进货管理 <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="#">制定进货单</a></li>
+                <li><a href="">制定进货单</a></li>
                 <li><a href="#">制定进货退货单</a></li>
             </ul>
         </li>
@@ -63,24 +63,20 @@
                             <tbody>
                             @foreach($customerList as $customer)
                                 <tr>
-                                    <form method="get" action="/customer/{name}" accept-charset="UTF-8"
-                                          class="form-horizontal">
-                                        <td>
-                                            <!--    <input type="text"  name="name" value={{ $customer->name }}>-->
-                                            {{ $customer->name }}
-                                        </td>
-                                        @if($customer->is_saler == 1)
-                                            <td>销售商</td>
-                                        @else
-                                            <td>进货商</td>
-                                        @endif
-                                        <td>{{ $customer->should_receive_quota }}</td>
-                                        <td>{{ $customer->should_receive }}</td>
-                                        <td>{{ $customer->should_pay }}</td>
-                                        <td>
-                                            <button class="btn btn-xs btn-default" type="submit">查看详情</button>
-                                        </td>
-                                    </form>
+                                    <td>
+                                        {{ $customer->name }}
+                                    </td>
+                                    @if($customer->is_saler == 1)
+                                        <td>销售商</td>
+                                    @else
+                                        <td>进货商</td>
+                                    @endif
+                                    <td>{{ $customer->should_receive_quota }}</td>
+                                    <td>{{ $customer->should_receive }}</td>
+                                    <td>{{ $customer->should_pay }}</td>
+                                    <td>
+                                        <a href="/customer/{{ $customer->id }}">查看详情</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
