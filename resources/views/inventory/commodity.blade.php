@@ -374,5 +374,5 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/.js') }}"></script>
+    <script src="{{ asset('js/commodity.js') }}"></script>
 @stop

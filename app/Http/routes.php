@@ -22,3 +22,8 @@ Route::get('receipt/createalert', 'ReceiptController@createAlert');
 
 
 Route::resource('customer', 'CustomerController');
+
+Route::resource('purchase', 'PurchaseReceiptController');
+Route::resource('purchaseback', 'PurchaseBackReceiptController');
+Route::resource('purchaseitem', 'PurchaseItemController');
+Route::resource('sale', 'SaleReceiptController');

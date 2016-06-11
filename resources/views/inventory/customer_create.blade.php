@@ -65,7 +65,7 @@
                        placeholder="应付(默认为0)">
                 <br/>
 
-                <p><input type="radio" name="is_saler" value="0"/>进货商</p>
+                <p><input type="radio" name="is_saler" value="0"/>供货商</p>
 
                 <p><input type="radio" name="is_saler" value="1"/>销售商</p>
                 @if ($errors->any())

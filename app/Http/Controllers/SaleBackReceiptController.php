@@ -5,14 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
 
-use App\PurchaseReceipt;
-use App\Customer;
-
-use Carbon\Carbon;
-
-class PurchaseReceiptController extends Controller
+class SaleBackReceiptController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,18 +15,9 @@ class PurchaseReceiptController extends Controller
      */
     public function index()
     {
-        $receiptListDB = PurchaseReceipt::all();
-        $receiptList = [];
-        foreach ($receiptListDB as $receipt) {
-            $customerSet = Customer::where('id', $receipt['supplier_id'])
-                ->get();
-            $customerName = $customerSet[0]['name'];
-            $receipt['customer_name'] = $customerName;
-            array_push($receiptList, $receipt);
-        }
-
-        return view('inventory.purchase', compact('receiptList'));
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +25,7 @@ class PurchaseReceiptController extends Controller
      */
     public function create()
     {
-        return view('inventory.purchase_create');
+        //
     }
 
     /**
@@ -51,30 +36,7 @@ class PurchaseReceiptController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'stock_id' => 'required',
-        ]);
-        $input = $request->all();
-        $customerSet = Customer::where('name', $input['supplier_name'])
-            ->where('is_saler', 0)
-            ->get();
-        if (count($customerSet) != 0) {
-            $customerId = $customerSet[0]['id'];
-        } else {
-            abort(404);
-        }
-        $input['supplier_id'] = $customerId;
-        //TODO
-        $input['user_id'] = 1;
-        $input['sum'] = 0;
-        $input['daily_index'] = 0;
-
-        $input['created_at'] = Carbon::now()->addHours(8);
-        $input['updated_at'] = Carbon::now()->addHours(8);
-
-        PurchaseReceipt::create($input);
-
-        return redirect('purchase');
+        //
     }
 
     /**

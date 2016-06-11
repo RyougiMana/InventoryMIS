@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>客户创建</h4>
+                <h4>客户详细信息</h4>
             </div>
         </div>
     </div>

@@ -77,7 +77,7 @@
                                     @if($customer->is_saler == 1)
                                         <td>销售商</td>
                                     @else
-                                        <td>供货商</td>
+                                        <td>进货商</td>
                                     @endif
                                     <td>{{ $customer->should_receive_quota }}</td>
                                     <td>{{ $customer->should_receive }}</td>
