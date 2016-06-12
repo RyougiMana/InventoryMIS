@@ -1,6 +1,7 @@
 /**
  * Created by okamiji on 16/6/6.
  */
+
 $(document).ready(function () {
     /* show & hide commodity classifications */
     var isHidden = true;
@@ -40,6 +41,13 @@ $(document).ready(function () {
         document.getElementById('commoditys-name').setAttribute("value", $(this).text());
         document.getElementById('new-commoditys-name').setAttribute("value", $(this).text());
     })
+
+    /* double click classification/commodity tag in order to fetch the detailed description of classification/commodity */
+    $(".classification").dblclick(function () {
+    });
+
+    $(".commodity").dblclick(function () {
+    });
 
     /* switch tabs */
     $(function () {

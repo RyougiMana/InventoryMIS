@@ -2,8 +2,6 @@
  * Created by okamiji on 16/6/10.
  */
 
-document.write('<script src="jquery.min.js"> <\/script>')
-
 $(document).ready(function () {
 
     /* switch tabs */

@@ -26,6 +26,9 @@ Route::resource('customer', 'CustomerController');
 Route::get('purchaseitem/create/{id}', 'PurchaseItemController@create');
 Route::post('purchaseitem/create/{id}', 'PurchaseItemController@store');
 
+Route::get('purchaseback/listreceipt/{id}', 'PurchaseBackReceiptController@showPurchase');
+Route::post('purchaseback/create/{id}', 'PurchaseBackReceiptController@store');
+
 Route::resource('purchase', 'PurchaseReceiptController');
 Route::resource('purchaseback', 'PurchaseBackReceiptController');
 Route::resource('sale', 'SaleReceiptController');

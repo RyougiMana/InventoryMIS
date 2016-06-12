@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
 use App\PurchaseReceipt;
+use App\PurchaseBackReceipt;
 use App\Customer;
 use App\CommodityParent;
 use App\Commodity;
@@ -24,6 +25,24 @@ class PurchaseReceiptController extends Controller
      */
     public function index()
     {
+        /* purchase back receipt presentation */
+        $backReceiptList = PurchaseBackReceipt::all();
+        $backReceiptPurchaseList = [];
+        $backReceiptCommodityList = [];
+        foreach ($backReceiptList as $backReceipt) {
+            /* add purchase receipt into list */
+            $purchaseReceiptSet = PurchaseReceipt::where('id', $backReceipt['purchasereceipt_id'])
+                ->get();
+            $purchaseReceipt = $purchaseReceiptSet[0];
+            array_push($backReceiptPurchaseList, $purchaseReceipt);
+            /* add commodity into list */
+            $commoditySet = Commodity::where('id', $backReceipt['commodity_id'])
+                ->get();
+            $commodity = $commoditySet[0];
+            array_push($backReceiptCommodityList, $commodity);
+        }
+
+        /* purchase receipt presentation */
         $receiptListDB = PurchaseReceipt::all();
         $receiptList = [];
         foreach ($receiptListDB as $receipt) {
@@ -34,7 +53,8 @@ class PurchaseReceiptController extends Controller
             array_push($receiptList, $receipt);
         }
 
-        return view('inventory.purchase', compact('receiptList'));
+        return view('inventory.purchase', compact('receiptList', 'backReceiptList',
+            'backReceiptPurchaseList', 'backReceiptCommodityList'));
     }
     /**
      * Show the form for creating a new resource.
@@ -58,6 +78,8 @@ class PurchaseReceiptController extends Controller
             'stock_id' => 'required',
         ]);
         $input = $request->all();
+
+        /* get customer id by name */
         $customerSet = Customer::where('name', $input['supplier_name'])
             ->where('is_saler', 0)
             ->get();
@@ -66,6 +88,8 @@ class PurchaseReceiptController extends Controller
         } else {
             abort(404);
         }
+
+        /* seed input's values */
         $input['supplier_id'] = $customerId;
         $input['user_id'] = 1;
         $input['sum'] = 0;

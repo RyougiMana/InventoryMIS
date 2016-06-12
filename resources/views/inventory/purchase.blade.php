@@ -7,22 +7,8 @@
 @section('navbar')
     <ul class="nav navbar-nav">
         <li><a href="customer">客户管理</a></li>
-        <li class="purchase-receipt">
-            <a href="purchase" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">进货管理 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="">制定进货单</a></li>
-                <li><a href="#">制定进货退货单</a></li>
-            </ul>
-        </li>
-        <li class="sale-receipt">
-            <a href="sale" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">销售管理 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="">制定销售单</a></li>
-                <li><a href="#">制定销售退货单</a></li>
-            </ul>
-        </li>
+        <li><a href="purchase">进货管理</a></li>
+        <li><a href="sale">销售管理</a></li>
     </ul>
 @stop
 
@@ -130,14 +116,27 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>姓名</th>
-                                    <th>类型</th>
-                                    <th>应收额度</th>
-                                    <th>应收</th>
-                                    <th>应付</th>
-                                    <th>查看详情</th>
+                                    <th>单号</th>
+                                    <th>进货单单号</th>
+                                    <th>商品名称</th>
+                                    <th>创建时间</th>
                                 </tr>
                                 </thead>
+                                @if(count($backReceiptList) != 0)
+                                    <tbody>
+                                    @for($i=0; $i<count($backReceiptList); $i++)
+                                        <tr>
+                                            <td>{{ $backReceiptList[$i]->id }}</td>
+                                            <td>
+                                                JHD-{{ $backReceiptPurchaseList[$i]->created_at }}
+                                                -{{ $backReceiptPurchaseList[$i]->daily_index }}
+                                            </td>
+                                            <td>{{ $backReceiptCommodityList[$i]->name }}</td>
+                                            <td>{{ $backReceiptList[$i]->created_at }}</td>
+                                        </tr>
+                                    @endfor
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                         {{--Purchase back receipt list--}}

@@ -85,6 +85,8 @@ class PurchaseItemController extends Controller
      */
     public function store($id, Request $request)
     {
+        /* process id before and after the method body */
+
         //current id reference to {$id}
         $id = substr($id, 1, strlen($id) - 2);
 
@@ -116,8 +118,32 @@ class PurchaseItemController extends Controller
         $input['created_at'] = Carbon::now()->addHours(8);
         $input['updated_at'] = Carbon::now()->addHours(8);
 
-        //insert
-        PurchaseReceiptItem::create($input);
+        /* modify commodity's attribute recent purchase price */
+        $commodity = Commodity::findOrFail($commodityId);
+        $commodity['recent_purchase_price'] = $input['commodity_price'];
+        $commodity->save();
+
+        /* judge if commodity in the item */
+        $itemsInReceipt = PurchaseReceiptItem::where('purchasereceipt_id', $id)
+            ->get();
+        $inReceipt = 0;
+        foreach ($itemsInReceipt as $itemInReceipt) {
+            if ($itemInReceipt['commodity_id'] == $commodityId) {
+                $inReceipt = 1;
+            }
+        }
+        /* $inReceipt : 1 : commodity already in receipt, change item */
+        /* $inReceipt : 0 : commodity not in receipt, insert item */
+        if ($inReceipt === 1) {
+            $itemSet = PurchaseReceiptItem::where('commodity_id', $commodityId)
+                ->get();
+            $itemId = $itemSet[0]['id'];
+            $item = PurchaseReceiptItem::findOrFail($itemId);
+            $item['commodity_count'] = $item['commodity_count'] + $input['commodity_count'];
+            $item->save();
+        } else {
+            PurchaseReceiptItem::create($input);
+        }
 
         //get commodity parent list
         $parentList = $this->getParentList();
