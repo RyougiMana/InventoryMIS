@@ -33,4 +33,7 @@ Route::resource('purchase', 'PurchaseReceiptController');
 Route::resource('purchaseback', 'PurchaseBackReceiptController');
 Route::resource('sale', 'SaleReceiptController');
 
+Route::get('stock', 'StockController@index');
+Route::get('stock/{id}', 'StockController@show');
+
 

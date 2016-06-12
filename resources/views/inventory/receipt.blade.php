@@ -8,14 +8,7 @@
     <ul class="nav navbar-nav">
         <li><a href="commodity">商品管理</a></li>
         <li><a href="receipt">库存单据</a></li>
-        <li class="receipt-manage">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">库存管理 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">库存查看</a></li>
-                <li><a href="#">库存盘点</a></li>
-            </ul>
-        </li>
+        <li><a href="stock">仓库管理</a></li>
     </ul>
 @stop
 
