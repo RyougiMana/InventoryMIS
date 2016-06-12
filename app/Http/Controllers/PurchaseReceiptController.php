@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PurchaseReceiptItem;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\PurchaseReceipt;
 use App\Customer;
+use App\CommodityParent;
+use App\Commodity;
 
 use Carbon\Carbon;
 
@@ -91,7 +94,43 @@ class PurchaseReceiptController extends Controller
      */
     public function show($id)
     {
-        //
+        /* receipt */
+        $receipt = PurchaseReceipt::findOrFail($id);
+
+        /* items */
+        $items = PurchaseReceiptItem::where('purchasereceipt_id', $id)
+            ->get();
+
+        /* customer */
+        $customer = Customer::findOrFail($receipt['supplier_id']);
+
+        /* commodity list, parent list */
+        $commodityList = [];
+        $parentList = [];
+
+        foreach ($items as $item) {
+            $commoditySet = Commodity::where('id', $item['commodity_id'])
+                ->where('is_deleted', 0)
+                ->get();
+            if (count($commoditySet) != 0) {
+                $commodityId = $commoditySet[0]['id'];
+                $commodity = Commodity::findOrFail($commodityId);
+                array_push($commodityList, $commodity);
+                $parentSet = CommodityParent::where('id', $commodity['parent_id'])
+                    ->get();
+                if (count($parentSet) != 0) {
+                    $parentId = $parentSet[0]['id'];
+                    $parent = CommodityParent::findOrFail($parentId);
+                    array_push($parentList, $parent);
+                } else {
+                    abort(404);
+                }
+            } else {
+                abort(404);
+            }
+        }
+        /* item/customer/commodity/parent 一一对应 */
+        return view('inventory.purchase_show', compact('receipt', 'items', 'customer', 'commodityList', 'parentList'));
     }
 
     /**

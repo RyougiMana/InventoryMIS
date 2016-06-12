@@ -98,7 +98,7 @@
                                             <td>{{ $receipt->sum }}</td>
                                             <td>{{ $receipt->sum }}</td>
                                             <td>
-                                                <a href="/receipt/{{ $receipt->id }}">查看详情</a>
+                                                <a href="/purchase/{{ $receipt->id }}">查看详情</a>
                                             </td>
                                         </tr>
                                     @endforeach
