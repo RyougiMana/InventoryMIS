@@ -102,6 +102,11 @@ class PurchaseItemController extends Controller
         $input['commodity_price'] = $this->str_trim($request->commodity_price);
         $input['commodity_sum'] = $input['commodity_count'] * $input['commodity_price'];
 
+        /* modify sum in the receipt by adding sum of item created */
+        $receipt = PurchaseReceipt::find($id);
+        $receipt['sum'] = $receipt['sum'] + $input['commodity_sum'];
+        $receipt->save();
+
         //get commodity id
         $commoditySet = Commodity::where('name', $commodityName)
             ->get();

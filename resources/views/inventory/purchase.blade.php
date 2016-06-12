@@ -95,7 +95,7 @@
                                             </td>
                                             <td>{{ $receipt->stock_id }}</td>
                                             <td>{{ $receipt->user_id }}</td>
-                                            <td>{{ $receipt->sum }}</td>
+                                            <td>{{ $receipt->comment }}</td>
                                             <td>{{ $receipt->sum }}</td>
                                             <td>
                                                 <a href="/purchase/{{ $receipt->id }}">查看详情</a>

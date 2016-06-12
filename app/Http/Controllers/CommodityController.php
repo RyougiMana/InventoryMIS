@@ -174,14 +174,25 @@ class CommodityController extends Controller
                     if (count($commodityIdSet) != 0) {
                         $commodityId = $commodityIdSet[0]['id'];
                         if ($request['parent_name'] === $request['new_parent_name']) {
-                            dd("whos");
                             $this->validate($request, [
-                                'name' => 'required|unique:commodities|min:1|max:45',
+                                'name' => 'required|min:1|max:45',
                                 'parent_name' => 'required',
                                 'classification' => 'required|min:1|max:45',
                                 'purchase_price' => 'required',
                                 'retail_price' => 'required'
                             ]);
+
+                            /* move commodity to new classification */
+                            /* get new parent's id */
+                            $parentId = $this->getParentId($request['new_parent_name']);
+                            if ($parentId != -1) {
+                                $commodity = Commodity::find($commodityId);
+                                $commodity['name'] = $request['new_name'];
+                                $commodity['parent_id'] = $parentId;
+                                $commodity->save();
+                            } else {
+                                dd("新分类不存在,请先创建.");
+                            }
                         } else {
                             $this->validate($request, [
                                 'name' => 'required|min:1|max:45',
@@ -190,17 +201,11 @@ class CommodityController extends Controller
                                 'purchase_price' => 'required',
                                 'retail_price' => 'required'
                             ]);
-                        }
 
-                        /* get new parent's id */
-                        $parentId = $this->getParentId($request['new_parent_name']);
-                        if ($parentId != -1) {
-                            $commodity = Commodity::find($commodityId);
+                            /* change commodity's name */
+                            $commodity = Commodity::findOrFail($commodityId);
                             $commodity['name'] = $request['new_name'];
-                            $commodity['parent_id'] = $parentId;
                             $commodity->save();
-                        } else {
-                            dd("新分类不存在,请先创建.");
                         }
                     }
                 } else {
