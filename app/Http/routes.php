@@ -35,5 +35,6 @@ Route::resource('sale', 'SaleReceiptController');
 
 Route::get('stock', 'StockController@index');
 Route::get('stock/{id}', 'StockController@show');
+Route::post('stock/create', 'StockController@store');
 
 

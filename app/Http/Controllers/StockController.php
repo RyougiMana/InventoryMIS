@@ -42,4 +42,12 @@ class StockController extends Controller
         return view('inventory.stock_show', compact('stock', 'stockItemList', 'parentList', 'commodityList'));
     }
 
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        Stock::create($input);
+
+        return redirect('stock');
+    }
+
 }

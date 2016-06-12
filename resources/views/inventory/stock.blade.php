@@ -22,7 +22,18 @@
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">
-                        仓库
+                        <div class="row-fluid">
+                            <div class="col-md-1">
+                                仓库
+                            </div>
+                            <div class="col-md-11">
+                                <form method="post" action="stock/create" accept-charset="UTF-8"
+                                      class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default btn-xs">创建仓库</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <!-- Table -->
                     <table class="table">
