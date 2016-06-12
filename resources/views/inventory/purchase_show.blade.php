@@ -42,7 +42,7 @@
                         </td>
                         <td>{{ $receipt->stock_id }}</td>
                         <td>{{ $receipt->user_id }}</td>
-                        <td>{{ $receipt->sum }}</td>
+                        <td>{{ $receipt->comment }}</td>
                         <td>{{ $receipt->sum }}</td>
                     </tr>
                 </table>
@@ -62,6 +62,7 @@
                         <th>商品分类</th>
                         <th>商品名称</th>
                         <th>商品价格</th>
+                        <th>商品数量</th>
                         <th>商品总价</th>
                         <th>添加时间</th>
                         <th>更新时间</th>
@@ -73,6 +74,7 @@
                             <td>{{ $parentList[$i]->name }}</td>
                             <td>{{ $commodityList[$i]->name }}</td>
                             <td>{{ $items[$i]->commodity_price }}</td>
+                            <td>{{ $items[$i]->commodity_count }}</td>
                             <td>{{ $items[$i]->commodity_sum }}</td>
                             <td>{{ $items[$i]->created_at }}</td>
                             <td>{{ $items[$i]->updated_at }}</td>

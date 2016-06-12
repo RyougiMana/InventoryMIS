@@ -135,12 +135,19 @@ class PurchaseItemController extends Controller
         /* $inReceipt : 1 : commodity already in receipt, change item */
         /* $inReceipt : 0 : commodity not in receipt, insert item */
         if ($inReceipt === 1) {
-            $itemSet = PurchaseReceiptItem::where('commodity_id', $commodityId)
-                ->get();
-            $itemId = $itemSet[0]['id'];
-            $item = PurchaseReceiptItem::findOrFail($itemId);
-            $item['commodity_count'] = $item['commodity_count'] + $input['commodity_count'];
-            $item->save();
+            $item = PurchaseReceiptItem::where('commodity_id', $commodityId)
+                ->where('purchasereceipt_id', $input['purchasereceipt_id'])
+                ->first();
+
+            $query = PurchaseReceiptItem::where('commodity_id', $commodityId);
+            $query->delete();
+
+            $input['commodity_count'] = $item['commodity_count'] + $input['commodity_count'];
+            $input['commodity_price'] = $item['commodity_price'] + $input['commodity_sum'];
+            $input['updated_at'] = Carbon::now()->addHours(8);
+
+            PurchaseReceiptItem::create($input);
+
         } else {
             PurchaseReceiptItem::create($input);
         }

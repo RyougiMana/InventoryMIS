@@ -127,23 +127,24 @@ class PurchaseBackReceiptController extends Controller
         PurchaseBackReceipt::create($input);
 
         /* get the item to be deleted */
-//        dd($input);
-        $itemSet = PurchaseReceiptItem::all();
-//        $itemSet = PurchaseReceiptItem::where('purchasereceipt_id', $input->purchasereceipt_id)
-//            ->where('commodity_id', $input->commodity_id)
-//            ->get();
-//        dd("test");
-        $item = $itemSet[0];
+        $item = DB::table('purchase_receipt_items')
+            ->where('purchasereceipt_id', $input['purchasereceipt_id'])
+            ->where('commodity_id', $input['commodity_id'])
+            ->first();
         $sum = $item->commodity_sum;
 
         /* change sum in the purchase receipt */
         $receipt = PurchaseReceipt::findOrFail($id);
         $receipt['sum'] = $receipt['sum'] - $sum;
+        $receipt->save();
 
         /* delete the item of the purchase receipt */
-        DB::table('purchase_receipt_items')
-            ->where('id', $item['id'])
-            ->delete();
+        $query = DB::table('purchase_receipt_items')
+            ->where('purchasereceipt_id', $input['purchasereceipt_id'])
+            ->where('commodity_id', $input['commodity_id']);
+        $query->delete();
+        //first() and delete() these functions execute the code.
+        //So first assign your conditions to a variable and then execute them separately.
 
         return redirect('purchase');
     }
