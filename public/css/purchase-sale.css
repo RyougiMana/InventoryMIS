@@ -1,0 +1,16 @@
+.word {
+    text-align: right;
+    line-height: 310%;
+}
+
+li {
+    list-style-type: none;
+}
+
+.blue {
+    background: #bcd4ec;
+}
+
+.gray {
+    background: #e0e0e0;
+}

@@ -1,7 +1,7 @@
 @extends('admin')
 
 @section('css-file')
-    <link rel="stylesheet" href="{{ asset('css/customer.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/purchase-sale.css') }}"/>
 @stop
 
 @section('content')

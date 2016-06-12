@@ -23,7 +23,11 @@ Route::get('receipt/createalert', 'ReceiptController@createAlert');
 
 Route::resource('customer', 'CustomerController');
 
+Route::get('purchaseitem/create/{id}', 'PurchaseItemController@create');
+Route::post('purchaseitem/create/{id}', 'PurchaseItemController@store');
+
 Route::resource('purchase', 'PurchaseReceiptController');
 Route::resource('purchaseback', 'PurchaseBackReceiptController');
-Route::resource('purchaseitem', 'PurchaseItemController');
 Route::resource('sale', 'SaleReceiptController');
+
+

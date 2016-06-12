@@ -64,7 +64,6 @@ class PurchaseReceiptController extends Controller
             abort(404);
         }
         $input['supplier_id'] = $customerId;
-        //TODO
         $input['user_id'] = 1;
         $input['sum'] = 0;
         $input['daily_index'] = 0;
@@ -72,9 +71,16 @@ class PurchaseReceiptController extends Controller
         $input['created_at'] = Carbon::now()->addHours(8);
         $input['updated_at'] = Carbon::now()->addHours(8);
 
-        PurchaseReceipt::create($input);
+        //TODO change daily index & user id
+        $id = DB::table('purchase_receipts')->insertGetId(
+            ['daily_index' => 0, 'supplier_id' => $customerId,
+                'stock_id' => $input['stock_id'], 'user_id' => 1,
+                'comment' => $input['comment'], 'sum' => 0,
+                'created_at' => Carbon::now()->addHours(8),
+                'updated_at' => Carbon::now()->addHours(8)]
+        );
 
-        return redirect('purchase');
+        return redirect('purchaseitem/create/{' . $id . '}');
     }
 
     /**
