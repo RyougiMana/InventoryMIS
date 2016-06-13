@@ -33,11 +33,12 @@ Route::get('saleitem/create/{id}', 'SaleItemController@create');
 Route::post('saleitem/create/{id}', 'SaleItemController@store');
 
 Route::get('saleback/listreceipt/{id}', 'SaleBackReceiptController@showSale');
-Route::post('saleback/create/{id}', 'SaleeBackReceiptController@store');
+Route::post('saleback/create/{id}', 'SaleBackReceiptController@store');
 
 Route::resource('purchase', 'PurchaseReceiptController');
 Route::resource('purchaseback', 'PurchaseBackReceiptController');
 Route::resource('sale', 'SaleReceiptController');
+Route::resource('saleback', 'SaleBackReceiptController');
 
 Route::get('stock', 'StockController@index');
 Route::get('stock/{id}', 'StockController@show');

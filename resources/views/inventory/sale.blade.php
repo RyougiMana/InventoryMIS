@@ -28,30 +28,30 @@
             <div class="col-md-8">
 
                 <ul class="nav nav-tabs">
-                    <li><a href="#purchase-receipt" tabindex="-1" data-toggle="tab">
-                            进货单</a>
+                    <li><a href="#sale-receipt" tabindex="-1" data-toggle="tab">
+                            销售单</a>
                     </li>
-                    <li><a href="#purchase-back-receipt" tabindex="-1" data-toggle="tab">
-                            进货退货单</a>
+                    <li><a href="#sale-back-receipt" tabindex="-1" data-toggle="tab">
+                            销售退货单</a>
                     </li>
                 </ul>
                 <br/>
                 <br/>
 
                 <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="purchase-receipt">
-                        {{--Purchase receipt list--}}
+                    <div class="tab-pane fade in active" id="sale-receipt">
+                        {{--Sale receipt list--}}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
                                 <div class="row-fluid">
                                     <div class="col-md-2">
-                                        进货单
+                                        销售单
                                     </div>
                                     <div class="col-md-10">
-                                        <form method="get" action="purchase/create" accept-charset="UTF-8"
+                                        <form method="get" action="sale/create" accept-charset="UTF-8"
                                               class="form-horizontal">
-                                            <button type="submit" class="btn btn-default btn-xs">创建进货单</button>
+                                            <button type="submit" class="btn btn-default btn-xs">创建销售单</button>
                                         </form>
                                     </div>
                                 </div>
@@ -64,7 +64,6 @@
                                     <th>供应商姓名</th>
                                     <th>仓库编号</th>
                                     <th>操作员姓名</th>
-                                    <th>备注</th>
                                     <th>总金额</th>
                                     <th>查看详情</th>
                                 </tr>
@@ -81,10 +80,9 @@
                                             </td>
                                             <td>{{ $receipt->stock_id }}</td>
                                             <td>{{ $receipt->user_id }}</td>
-                                            <td>{{ $receipt->comment }}</td>
                                             <td>{{ $receipt->sum }}</td>
                                             <td>
-                                                <a href="/purchase/{{ $receipt->id }}">查看详情</a>
+                                                <a href="/sale/{{ $receipt->id }}">查看详情</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -92,22 +90,22 @@
                                 @endif
                             </table>
                         </div>
-                        {{--Purchase receipt list--}}
+                        {{--Sale receipt list--}}
                     </div>
 
-                    <div class="tab-pane fade in" id="purchase-back-receipt">
-                        {{--Purchase back receipt list--}}
+                    <div class="tab-pane fade in" id="sale-back-receipt">
+                        {{--Sale back receipt list--}}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
                                 <div class="row-fluid">
                                     <div class="col-md-2">
-                                        进货退货单
+                                        销售退货单
                                     </div>
                                     <div class="col-md-10">
-                                        <form method="get" action="purchaseback/create" accept-charset="UTF-8"
+                                        <form method="get" action="saleback/create" accept-charset="UTF-8"
                                               class="form-horizontal">
-                                            <button type="submit" class="btn btn-default btn-xs">创建进货退货单</button>
+                                            <button type="submit" class="btn btn-default btn-xs">创建销售退货单</button>
                                         </form>
                                     </div>
                                 </div>
@@ -128,8 +126,8 @@
                                         <tr>
                                             <td>{{ $backReceiptList[$i]->id }}</td>
                                             <td>
-                                                JHD-{{ $backReceiptPurchaseList[$i]->created_at }}
-                                                -{{ $backReceiptPurchaseList[$i]->daily_index }}
+                                                JHD-{{ $backReceiptSaleList[$i]->created_at }}
+                                                -{{ $backReceiptSaleList[$i]->daily_index }}
                                             </td>
                                             <td>{{ $backReceiptCommodityList[$i]->name }}</td>
                                             <td>{{ $backReceiptList[$i]->created_at }}</td>
@@ -139,7 +137,7 @@
                                 @endif
                             </table>
                         </div>
-                        {{--Purchase back receipt list--}}
+                        {{--Sale back receipt list--}}
                     </div>
                 </div>
 
