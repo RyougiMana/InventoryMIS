@@ -13,6 +13,7 @@ use App\Customer;
 use App\PurchaseReceipt;
 use App\PurchaseBackReceipt;
 use App\PurchaseReceiptItem;
+use App\StockItem;
 
 use Carbon\Carbon;
 
@@ -118,10 +119,46 @@ class PurchaseItemController extends Controller
         $input['created_at'] = Carbon::now()->addHours(8);
         $input['updated_at'] = Carbon::now()->addHours(8);
 
-        /* modify commodity's attribute recent purchase price */
-        $commodity = Commodity::findOrFail($commodityId);
-        $commodity['recent_purchase_price'] = $input['commodity_price'];
-        $commodity->save();
+        /* update commodity's attribute recent purchase price */
+        Commodity::where('id', $commodityId)
+            ->update(['recent_purchase_price' => $input['commodity_price']]);
+
+        /* update the money customer (should pay) */
+        $customer = Customer::findOrFail($receipt['supplier_id']);
+        $shouldPay = $customer['should_pay'] + $input['commodity_sum'];
+        Customer::where('id', $receipt['supplier_id'])
+            ->update(['should_pay' => $shouldPay]);
+
+        /* update the commodity item in stock */
+        $stockId = $receipt['stock_id'];
+        $stockItems = StockItem::where('stock_id', $stockId)
+            ->where('commodity_id', $input['commodity_id'])
+            ->get();
+        if (count($stockItems) != 0) {
+            /* update stock item with given commodity and stock id */
+            $stockItemId = $stockItems[0]['id'];
+            $stockItemTmp = StockItem::findOrFail($stockItemId);
+            $stockItem['stock_id'] = $stockItemTmp['stock_id'];
+            $stockItem['commodity_id'] = $stockItemTmp['commodity_id'];
+            $stockItem['commodity_count'] = $stockItemTmp['commodity_count'] + $input['commodity_count'];
+            $stockItem['created_at'] = $stockItemTmp['created_at'];
+            $stockItem['updated_at'] = Carbon::now()->addHours(8);
+
+            $query = StockItem::where('stock_id', $stockId)
+                ->where('commodity_id', $input['commodity_id']);
+            $query->delete();
+
+            StockItem::create($stockItem);
+        } else {
+            /* create new stock item in the stock */
+            $newItem['stock_id'] = $stockId;
+            $newItem['commodity_id'] = $input['commodity_id'];
+            $newItem['commodity_count'] = $input['commodity_count'];
+            $newItem['created_at'] = Carbon::now()->addHours(8);
+            $newItem['updated_at'] = Carbon::now()->addHours(8);
+
+            StockItem::create($newItem);
+        }
 
         /* judge if commodity in the item */
         $itemsInReceipt = PurchaseReceiptItem::where('purchasereceipt_id', $id)
@@ -143,7 +180,7 @@ class PurchaseItemController extends Controller
             $query->delete();
 
             $input['commodity_count'] = $item['commodity_count'] + $input['commodity_count'];
-            $input['commodity_price'] = $item['commodity_price'] + $input['commodity_sum'];
+            $input['commodity_sum'] = $item['commodity_sum'] + $input['commodity_sum'];
             $input['updated_at'] = Carbon::now()->addHours(8);
 
             PurchaseReceiptItem::create($input);

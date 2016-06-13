@@ -31,8 +31,8 @@
                             <tbody>
                             @for($i=0; $i<count($stockItemList); $i++)
                                 <tr>
-                                    <td>{{ $parent[$i]->name }}</td>
-                                    <td>{{ $commodity[$i]->name }}</td>
+                                    <td>{{ $parentList[$i]->name }}</td>
+                                    <td>{{ $commodityList[$i]->name }}</td>
                                     <td>{{ $stockItemList[$i]->commodity_count }}</td>
                                     <td>{{ $stockItemList[$i]->created_at }}</td>
                                     <td>{{ $stockItemList[$i]->updated_at }}</td>

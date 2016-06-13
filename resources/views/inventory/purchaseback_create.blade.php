@@ -63,6 +63,7 @@
                     <tr>
                         <th>商品分类</th>
                         <th>商品名称</th>
+                        <th>商品数量</th>
                         <th>商品价格</th>
                         <th>商品总价</th>
                         <th>添加时间</th>
@@ -75,6 +76,7 @@
                         <tr>
                             <td>{{ $parentList[$i]->name }}</td>
                             <td>{{ $commodityList[$i]->name }}</td>
+                            <td>{{ $items[$i]->commodity_count }}</td>
                             <td>{{ $items[$i]->commodity_price }}</td>
                             <td>{{ $items[$i]->commodity_sum }}</td>
                             <td>{{ $items[$i]->created_at }}</td>

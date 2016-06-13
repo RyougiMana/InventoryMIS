@@ -13,6 +13,7 @@ use App\PurchaseBackReceipt;
 use App\Customer;
 use App\CommodityParent;
 use App\Commodity;
+use App\StockItem;
 
 use Carbon\Carbon;
 
@@ -145,6 +146,46 @@ class PurchaseBackReceiptController extends Controller
         $query->delete();
         //first() and delete() these functions execute the code.
         //So first assign your conditions to a variable and then execute them separately.
+
+        /* update the money customer (should receive) */
+        $customer = Customer::findOrFail($receipt['supplier_id']);
+        $shouldReceive = $customer['should_receive'] + $sum;
+        Customer::where('id', $receipt['supplier_id'])
+            ->update(['should_receive' => $shouldReceive]);
+
+        /* update the commodity item in stock */
+        $stockId = $receipt['stock_id'];
+        $stockItems = StockItem::where('stock_id', $stockId)
+            ->where('commodity_id', $input['commodity_id'])
+            ->get();
+        if (count($stockItems) != 0) {
+            /* update stock item with given commodity and stock id */
+            $stockItemId = $stockItems[0]['id'];
+            $stockItemTmp = StockItem::findOrFail($stockItemId);
+            $stockItem['stock_id'] = $stockItemTmp['stock_id'];
+            $stockItem['commodity_id'] = $stockItemTmp['commodity_id'];
+            $stockItem['commodity_count'] = $stockItemTmp['commodity_count'] - $item->commodity_count;
+            $stockItem['created_at'] = $stockItemTmp['created_at'];
+            $stockItem['updated_at'] = Carbon::now()->addHours(8);
+
+            $query = StockItem::where('stock_id', $stockId)
+                ->where('commodity_id', $input['commodity_id']);
+            $query->delete();
+
+            if ($stockItem['commodity_count'] != 0) {
+                StockItem::create($stockItem);
+            }
+
+        } else {
+            /* create new stock item in the stock */
+            $newItem['stock_id'] = $stockId;
+            $newItem['commodity_id'] = $input['commodity_id'];
+            $newItem['commodity_count'] = $input['commodity_count'];
+            $newItem['created_at'] = Carbon::now()->addHours(8);
+            $newItem['updated_at'] = Carbon::now()->addHours(8);
+
+            StockItem::create($newItem);
+        }
 
         return redirect('purchase');
     }

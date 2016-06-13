@@ -30,12 +30,10 @@ class StockController extends Controller
         $parentList = [];
         $commodityList = [];
         foreach ($stockItemList as $item) {
-            $commodity = Commodity::where('id', $item['commodity_id'])
-                ->first();
+            $commodity = Commodity::findOrFail($item->commodity_id);
             array_push($commodityList, $commodity);
 
-            $parent = CommodityParent::where('id', $commodity->parent_id)
-                ->first();
+            $parent = CommodityParent::findOrFail($commodity->parent_id);
             array_push($parentList, $parent);
         }
 
