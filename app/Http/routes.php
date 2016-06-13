@@ -45,5 +45,4 @@ Route::get('stock/{id}', 'StockController@show');
 Route::post('stock/create', 'StockController@store');
 
 /* mis */
-Route::resource('miscommodity', 'MisCommodityController');
-Route::get('miscommoditydisplay', 'CommodityDisplayController@index');
+Route::get('miscommoditydisplay', 'MisCommodityController@display');
