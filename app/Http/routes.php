@@ -46,3 +46,10 @@ Route::post('stock/create', 'StockController@store');
 
 /* mis */
 Route::get('miscommoditydisplay', 'MisCommodityController@display');
+Route::get('miscommoditytendency/commodity/{id}', 'MisCommodityController@commodityTendency');
+Route::get('miscommoditytendency/classification/{id}', 'MisCommodityController@classificationTendency');
+Route::get('miscommoditytendency', 'MisCommodityController@tendency');
+
+/* get information */
+Route::get('miscommodity/info/commodity/{id}', 'MisCommodityController@getCommodityInfo');
+Route::get('miscommodity/info/classification/{id}', 'MisCommodityController@getClassificationInfo');

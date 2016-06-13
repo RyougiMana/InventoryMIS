@@ -38,4 +38,33 @@ class MisCommodityController extends Controller
 
         return view('mis.commodity_display', compact('parentList', 'commodityList', 'commodityParentList'));
     }
+
+    public function commodityTendency($id)
+    {
+        $commodity = Commodity::findOrFail($id);
+        return view('mis.commodity_commodity_tendency', compact('commodity'));
+    }
+
+    public function classificationTendency($id)
+    {
+        return view('mis.commodity_classification_tendency');
+    }
+
+    public function tendency()
+    {
+        return view('mis.commodity_tendency');
+    }
+
+    public function getCommodityInfo($id)
+    {
+        $commodity = Commodity::findOrFail($id);
+        return $commodity;
+    }
+
+    public function getClassificationInfo($id)
+    {
+        $parent = CommodityParent::findOrFail($id);
+        return $parent;
+    }
+
 }

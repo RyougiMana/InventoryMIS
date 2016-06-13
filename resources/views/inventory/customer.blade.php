@@ -36,6 +36,7 @@
                             <div class="col-md-11">
                                 <form method="get" action="customer/create" accept-charset="UTF-8"
                                       class="form-horizontal">
+                                    {{ csrf_field() }}
                                     <button type="submit" class="btn btn-default btn-xs">添加新客户</button>
                                 </form>
                             </div>

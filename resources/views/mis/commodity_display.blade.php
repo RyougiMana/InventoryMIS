@@ -1,16 +1,16 @@
 @extends('admin_mis')
 
 @section('css-file')
-    <link rel="stylesheet" href="{{ asset('css/receipt.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/commodity.css') }}"/>
 @stop
 
 @section('content')
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>库存单据管理</h4>
+                <h4>商品列表</h4>
 
-                <p>展示商品及商品分类的详细信息</p>
+                <p>展示商品及商品分类的详细信息,选择商品及商品分类查看趋势.</p>
             </div>
         </div>
     </div>
@@ -33,7 +33,6 @@
 
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="commodity">
-                        {{--Purchase receipt list--}}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
@@ -52,6 +51,7 @@
                                     <th>售价</th>
                                     <th>最近进价</th>
                                     <th>最近售价</th>
+                                    <th>查看趋势</th>
                                 </tr>
                                 </thead>
                                 @if(count($commodityList) != 0)
@@ -67,17 +67,18 @@
                                             <td>{{ $commodityList[$i]->retail_price }}</td>
                                             <td>{{ $commodityList[$i]->recent_purchase_price }}</td>
                                             <td>{{ $commodityList[$i]->recent_retail_price }}</td>
+                                            <td>
+                                                <a href="/miscommoditytendency/commodity/{{ $commodityList[$i]->id }}">查看趋势</a>
+                                            </td>
                                         </tr>
                                     @endfor
                                     </tbody>
                                 @endif
                             </table>
                         </div>
-                        {{--Purchase receipt list--}}
                     </div>
 
                     <div class="tab-pane fade in" id="commodity-classification">
-                        {{--Purchase back receipt list--}}
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
@@ -105,10 +106,8 @@
                                 @endif
                             </table>
                         </div>
-                        {{--Purchase back receipt list--}}
                     </div>
                 </div>
-
 
             </div>
             <div class="col-md-2"></div>
@@ -121,5 +120,5 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/receipt.js') }}"></script>
+    <script src="{{ asset('js/commodity.js') }}"></script>
 @stop
