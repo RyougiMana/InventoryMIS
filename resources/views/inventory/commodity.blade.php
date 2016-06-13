@@ -46,6 +46,15 @@
                                 <p>&nbsp&nbsp&nbsp&nbsp&nbsp{{ $commodity->name }}</p>
                             </li>
                         @endforeach
+                    @endforeach@foreach($commodityList as $parent_id=>$tmpList)
+                        <li class="list-group-item classification">
+                            <p>{{ $parentList[$parent_id] }}</p>
+                        </li>
+                        @foreach($tmpList as $commodity)
+                            <li class="list-group-item commodity">
+                                <p>&nbsp&nbsp&nbsp&nbsp&nbsp{{ $commodity->name }}</p>
+                            </li>
+                        @endforeach
                     @endforeach
                 </ul>
             </div>

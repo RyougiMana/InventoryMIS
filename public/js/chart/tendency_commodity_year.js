@@ -1,36 +1,17 @@
 /**
- * Created by okamiji on 16/6/13.
+ * Created by okamiji on 16/6/14.
  */
 
-function lineChart() {
+function commodityLineChartYear() {
 
     var YEARS = ["2012", "2013", "2014", "2015", "2016"];
-    var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var DAYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-        "31"];
 
     var ajaxCommodityY = $.ajax({url: "/miscommodity/info/commodity/y/" + $("#id").val(), async: false}).responseText;
-    var ajaxCommodityM = $.ajax({url: "/miscommodity/info/commodity/m/" + $("#id").val(), async: false}).responseText;
-    var ajaxCommodityD = $.ajax({url: "/miscommodity/info/commodity/d/" + $("#id").val(), async: false}).responseText;
 
     var commodityY = ajaxCommodityY.substr(1, strlen(ajaxCommodityY) - 2);
     commodityY = commodityY.split(",");
 
-    var commodityM = ajaxCommodityM.substr(1, strlen(ajaxCommodityM) - 2);
-    commodityM = commodityM.split(",");
-
-    var commodityD = ajaxCommodityD.substr(1, strlen(ajaxCommodityD) - 2);
-    commodityD = commodityD.split(",");
-
-    $("#myDiv").html(commodityD);
-
     var maxY = getMax(commodityY, 5);
-
-    var maxM = getMax(commodityM, 12);
-
-    var maxD = getMax(commodityD, 31);
 
     function getMax(str, number) {
         var max = 0;
@@ -67,27 +48,19 @@ function lineChart() {
     var config = {
         type: 'line',
         data: {
-            labels: MONTHS,
+            labels: YEARS,
             datasets: [{
-                label: "商品趋势",
-                //         data: [0, 1,2,23,55],
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                label: "商品",
+                data: commodityY,
                 fill: false,
                 borderDash: [5, 5],
-            }, {
-                hidden: true,
-                label: 'hidden dataset',
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-            }, {
-                label: "My Second dataset",
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
             }]
         },
         options: {
             responsive: true,
             title: {
                 display: true,
-                text: 'Chart.js Line Chart'
+                text: '商品近五年趋势'
             },
             tooltips: {
                 mode: 'label',
@@ -134,7 +107,7 @@ function lineChart() {
                     },
                     ticks: {
                         suggestedMin: 0,
-                        suggestedMax: 250,
+                        suggestedMax: maxY,
                     }
                 }]
             }
@@ -150,8 +123,10 @@ function lineChart() {
     });
 
     window.onload = function () {
-        var ctx = document.getElementById("canvas").getContext("2d");
+        var ctx = document.getElementById("canvasYear").getContext("2d");
         window.myLine = new Chart(ctx, config);
+        var ctx1 = document.getElementById("canvasMonth").getContext("2d");
+        window.myLine = new Chart(ctx1, config);
     };
 
     $('#randomizeData').click(function () {

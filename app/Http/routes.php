@@ -52,4 +52,8 @@ Route::get('miscommoditytendency', 'MisCommodityController@tendency');
 
 /* get information */
 Route::get('miscommodity/info/commodity/{id}', 'MisCommodityController@getCommodityInfo');
+Route::get('miscommodity/info/commodity/y/{id}', 'MisCommodityController@getCommodityInfoYear');
+Route::get('miscommodity/info/commodity/m/{id}', 'MisCommodityController@getCommodityInfoMonth');
+Route::get('miscommodity/info/commodity/d/{id}', 'MisCommodityController@getCommodityInfoDay');
+
 Route::get('miscommodity/info/classification/{id}', 'MisCommodityController@getClassificationInfo');

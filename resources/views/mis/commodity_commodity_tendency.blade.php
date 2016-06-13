@@ -12,6 +12,9 @@
 
                 <p>展示商品 {{ $commodity->name }} 在一段时间内的进货及销售情况</p>
 
+                <input type="hidden" class="form-control" id="id" name="id"
+                       value="{{ $id }}"/>
+
                 <div id="myDiv">test</div>
             </div>
         </div>
@@ -26,13 +29,10 @@
                     <li><a href="#year" tabindex="-1" data-toggle="tab">
                             年</a>
                     </li>
-                    <li><a href="#season" tabindex="-1" data-toggle="tab">
-                            季度</a>
-                    </li>
                     <li><a href="#month" tabindex="-1" data-toggle="tab">
                             月</a>
                     </li>
-                    <li><a href="#commodity-classification" tabindex="-1" data-toggle="tab">
+                    <li><a href="#day" tabindex="-1" data-toggle="tab">
                             日</a>
                     </li>
                 </ul>
@@ -41,25 +41,15 @@
 
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="year">
-                        <canvas id="canvas" width="400" height="400"></canvas>
-                    </div>
-
-                    <div class="tab-pane fade in" id="season">
-
+                        <canvas id="canvasYear" width="400" height="250"></canvas>
                     </div>
 
                     <div class="tab-pane fade in active" id="month">
-                        <div class="row-fluid">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6"></div>
-                        </div>
+                        <canvas id="canvasMonth" width="400" height="250"></canvas>
                     </div>
 
                     <div class="tab-pane fade in active" id="day">
-                        <div class="row-fluid">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6"></div>
-                        </div>
+                        <canvas id="canvasDay" width="400" height="250"></canvas>
                     </div>
                 </div>
 
@@ -78,5 +68,7 @@
     <script src="{{ asset('js/commodity.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('chartjs/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('js/chart/tendency.js') }}"></script>
+    <script src="{{ asset('js/chart/tendency_commodity_year.js') }}"></script>
+    <script src="{{ asset('js/chart/tendency_commodity_month.js') }}"></script>
+    <script src="{{ asset('js/chart/tendency_commodity_day.js') }}"></script>
 @stop
