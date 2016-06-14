@@ -6,6 +6,48 @@ function commodityLineChartYear() {
 
     var YEARS = ["2012", "2013", "2014", "2015", "2016"];
 
+    /* 销售部分 */
+    var ajaxCommodityD_sale = $.ajax({
+        url: "/miscommodity/info/commodity/sale/d/" + $("#id").val(),
+        async: false
+    }).responseText;
+
+    var commodityD_sale = ajaxCommodityD_sale.substr(1, strlen(ajaxCommodityD_sale) - 2);
+    commodityD_sale = commodityD_sale.split(",");
+
+
+    /* 进货部分 */
+    var ajaxCommodityD_purchase = $.ajax({
+        url: "/miscommodity/info/commodity/purchase/d/" + $("#id").val(),
+        async: false
+    }).responseText;
+
+    var commodityD_purchase = ajaxCommodityD_purchase.substr(1, strlen(ajaxCommodityD_purchase) - 2);
+    commodityD_purchase = commodityD_purchase.split(",");
+
+    function getMax(str, number) {
+        var max = 0;
+        for (var i = 0; i < number; i++) {
+            if (str[i] > max) {
+                max = str[i];
+            }
+        }
+        return max;
+    }
+
+    var maxD_sale = getMax(commodityD_sale, 31);
+    var maxD_purchase = getMax(commodityD_purchase, 31);
+    var maxD = 0;
+    if (maxD_sale >= maxD_purchase) {
+        maxD = maxD_sale;
+    }
+    else {
+        maxD = maxD_purchase;
+    }
+
+//    $("#myDiv").html(commodityD_sale);
+
+
     var ajaxCommodityY = $.ajax({
         url: "/miscommodity/info/commodity/sale/y/" + $("#id").val(),
         async: false

@@ -31,7 +31,7 @@ function commodityLineChartDay() {
     var commodityD_purchase = ajaxCommodityD_purchase.substr(1, strlen(ajaxCommodityD_purchase) - 2);
     commodityD_purchase = commodityD_purchase.split(",");
 
-    function getMax(str1, number) {
+    function getMax(str, number) {
         var max = 0;
         for (var i = 0; i < number; i++) {
             if (str[i] > max) {
@@ -43,15 +43,15 @@ function commodityLineChartDay() {
 
     var maxD_sale = getMax(commodityD_sale, 31);
     var maxD_purchase = getMax(commodityD_purchase, 31);
-    //  var maxD = 0;
-    //if(maxD_sale >= maxD_purchase){
-    //    maxD = maxD_sale;
-    //}
-    //else{
-    //    maxD = maxD_purchase;
-    //}
+    var maxD = 0;
+    if (maxD_sale >= maxD_purchase) {
+        maxD = maxD_sale;
+    }
+    else {
+        maxD = maxD_purchase;
+    }
 
-    $("#myDiv").html(maxD_sale);
+//    $("#myDiv").html(commodityD_sale);
 
 
     function strlen(str) {
@@ -149,7 +149,7 @@ function commodityLineChartDay() {
 
     $.each(config.data.datasets, function (i, dataset) {
         dataset.borderColor = randomColor(0.4);
-        dataset.backgroundColor = randomColor(0.5);
+        //   dataset.backgroundColor = randomColor(0.5);
         dataset.pointBorderColor = randomColor(0.7);
         dataset.pointBackgroundColor = randomColor(0.5);
         dataset.pointBorderWidth = 1;
