@@ -6,12 +6,17 @@ function commodityLineChartYear() {
 
     var YEARS = ["2012", "2013", "2014", "2015", "2016"];
 
-    var ajaxCommodityY = $.ajax({url: "/miscommodity/info/commodity/y/" + $("#id").val(), async: false}).responseText;
+    var ajaxCommodityY = $.ajax({
+        url: "/miscommodity/info/commodity/sale/y/" + $("#id").val(),
+        async: false
+    }).responseText;
 
     var commodityY = ajaxCommodityY.substr(1, strlen(ajaxCommodityY) - 2);
     commodityY = commodityY.split(",");
 
     var maxY = getMax(commodityY, 5);
+
+//    $("#myDiv").html(commodityY);
 
     function getMax(str, number) {
         var max = 0;
@@ -96,7 +101,7 @@ function commodityLineChartYear() {
                     display: true,
                     scaleLabel: {
                         show: true,
-                        labelString: 'Month'
+                        labelString: 'Year'
                     }
                 }],
                 yAxes: [{
@@ -116,7 +121,7 @@ function commodityLineChartYear() {
 
     $.each(config.data.datasets, function (i, dataset) {
         dataset.borderColor = randomColor(0.4);
-        dataset.backgroundColor = randomColor(0.5);
+//        dataset.backgroundColor = randomColor(0.5);
         dataset.pointBorderColor = randomColor(0.7);
         dataset.pointBackgroundColor = randomColor(0.5);
         dataset.pointBorderWidth = 1;
@@ -125,8 +130,6 @@ function commodityLineChartYear() {
     window.onload = function () {
         var ctx = document.getElementById("canvasYear").getContext("2d");
         window.myLine = new Chart(ctx, config);
-        var ctx1 = document.getElementById("canvasMonth").getContext("2d");
-        window.myLine = new Chart(ctx1, config);
     };
 
     $('#randomizeData').click(function () {
@@ -212,4 +215,11 @@ function commodityLineChartYear() {
 
         window.myLine.update();
     });
+
 }
+
+
+$(document).ready(function () {
+    commodityLineChartYear();
+});
+

@@ -68,7 +68,7 @@
                                             <td>{{ $commodityList[$i]->recent_purchase_price }}</td>
                                             <td>{{ $commodityList[$i]->recent_retail_price }}</td>
                                             <td>
-                                                <a href="/miscommoditytendency/commodity/{{ $commodityList[$i]->id }}">查看趋势</a>
+                                                <a href="/miscommodity/tendency/commodity/y/{{ $commodityList[$i]->id }}">查看趋势</a>
                                             </td>
                                         </tr>
                                     @endfor

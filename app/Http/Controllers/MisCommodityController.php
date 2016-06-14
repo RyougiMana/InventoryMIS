@@ -41,12 +41,6 @@ class MisCommodityController extends Controller
         return view('mis.commodity_display', compact('parentList', 'commodityList', 'commodityParentList'));
     }
 
-    public function commodityTendency($id)
-    {
-        $commodity = Commodity::findOrFail($id);
-        return view('mis.commodity_commodity_tendency', compact('commodity', 'id'));
-    }
-
     public function classificationTendency($id)
     {
         $parent = CommodityParent::findOrFail($id);
@@ -65,7 +59,63 @@ class MisCommodityController extends Controller
     }
 
     /* commodity tendency of year, season, month, day */
-    public function getCommodityInfoYear($id)
+    public function getCommoditySaleInfoYear($id)
+    {
+        /* tendency during the past 5 years */
+        $frequency = [0, 0, 0, 0, 0];
+        $itemSet = SaleReceiptItem::where('commodity_id', $id)
+            ->get();
+        $current_year = Carbon::now()->year;
+        foreach ($itemSet as $item) {
+            $created_at_year = $item['created_at']->year;
+            if ($created_at_year >= ($current_year - 4)) {
+                $frequency[$created_at_year - $current_year + 4]++;
+            }
+        }
+        return $frequency;
+    }
+
+    public function getCommoditySaleInfoMonth($id)
+    {
+        /* tendency during 12 months in current year */
+        $frequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        $itemSet = SaleReceiptItem::where('commodity_id', $id)
+            ->get();
+        foreach ($itemSet as $item) {
+            $created_at_year = $item['created_at']->year;
+            $created_at_month = $item['created_at']->month;
+            if ($created_at_year == Carbon::now()->year) {
+                $frequency[$created_at_month]++;
+            }
+        }
+        return $frequency;
+    }
+
+    public function getCommoditySaleInfoDay($id)
+    {
+        /* tendency during 30 days in current month */
+        $frequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        $itemSet = SaleReceiptItem::where('commodity_id', $id)
+            ->get();
+        $current_year = Carbon::now()->year;
+        $current_month = Carbon::now()->month;
+        $current_day = Carbon::now()->day;
+        foreach ($itemSet as $item) {
+            $created_at_year = $item['created_at']->year;
+            $created_at_month = $item['created_at']->month;
+            $created_at_day = $item['created_at']->day;
+            if ($created_at_year == $current_year &&
+                ($created_at_month == $current_month)
+            ) {
+                $frequency[$created_at_day]++;
+            }
+        }
+        return $frequency;
+    }
+
+    public function getCommodityPurchaseInfoYear($id)
     {
         /* tendency during the past 5 years */
         $frequency = [0, 0, 0, 0, 0];
@@ -81,7 +131,7 @@ class MisCommodityController extends Controller
         return $frequency;
     }
 
-    public function getCommodityInfoMonth($id)
+    public function getCommodityPurchaseInfoMonth($id)
     {
         /* tendency during 12 months in current year */
         $frequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -97,7 +147,7 @@ class MisCommodityController extends Controller
         return $frequency;
     }
 
-    public function getCommodityInfoDay($id)
+    public function getCommodityPurchaseInfoDay($id)
     {
         /* tendency during 30 days in current month */
         $frequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -119,6 +169,25 @@ class MisCommodityController extends Controller
             }
         }
         return $frequency;
+    }
+
+    /* get commodity tendency views */
+    public function getCommodityTendencyYear($id)
+    {
+        $commodity = Commodity::findOrFail($id);
+        return view('mis.tendency.commodity.year', compact('commodity', 'id'));
+    }
+
+    public function getCommodityTendencyMonth($id)
+    {
+        $commodity = Commodity::findOrFail($id);
+        return view('mis.tendency.commodity.month', compact('commodity', 'id'));
+    }
+
+    public function getCommodityTendencyDay($id)
+    {
+        $commodity = Commodity::findOrFail($id);
+        return view('mis.tendency.commodity.day', compact('commodity', 'id'));
     }
 
     public function getClassificationInfo($id)

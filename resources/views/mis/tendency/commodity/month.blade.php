@@ -15,15 +15,15 @@
                 <input type="hidden" class="form-control" id="id" name="id"
                        value="{{ $id }}"/>
 
-                <div id="myDiv">test</div>
+                <div id="myDiv"></div>
             </div>
         </div>
     </div>
     <br/>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
 
                 <div class="btn-group" role="group">
 
@@ -47,7 +47,11 @@
 
                 </div>
 
-                <canvas id="canvasYear" width="400" height="250"></canvas>
+            </div>
+            <div class="col-md-8">
+
+                <canvas id="canvasMonth" width="400" height="250"></canvas>
+
 
             </div>
             <div class="col-md-2"></div>
@@ -63,5 +67,5 @@
     <script src="{{ asset('js/commodity.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('chartjs/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('js/chart/tendency_commodity_year.js') }}"></script>
+    <script src="{{ asset('js/chart/tendency_commodity_month.js') }}"></script>
 @stop

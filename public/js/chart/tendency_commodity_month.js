@@ -13,6 +13,8 @@ function commodityLineChartMonth() {
 
     var maxM = getMax(commodityM, 12);
 
+//    $("#myDiv").html(commodityM);
+
     function getMax(str, number) {
         var max = 0;
         for (var i = 0; i < number; i++) {
@@ -116,7 +118,7 @@ function commodityLineChartMonth() {
 
     $.each(config.data.datasets, function (i, dataset) {
         dataset.borderColor = randomColor(0.4);
-        dataset.backgroundColor = randomColor(0.5);
+//        dataset.backgroundColor = randomColor(0.5);
         dataset.pointBorderColor = randomColor(0.7);
         dataset.pointBackgroundColor = randomColor(0.5);
         dataset.pointBorderWidth = 1;
@@ -211,3 +213,8 @@ function commodityLineChartMonth() {
         window.myLine.update();
     });
 }
+
+$(document).ready(function () {
+    commodityLineChartMonth();
+});
+

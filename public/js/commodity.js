@@ -53,11 +53,5 @@ $(document).ready(function () {
     $(function () {
         $('#myTab li:eq(1) a').tab('show');
     });
-
-    /* draw line charts */
-
-    commodityLineChartYear();
-    commodityLineChartMonth();
-//    commodityLineChartDay();
 });
 
