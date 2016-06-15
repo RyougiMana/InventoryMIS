@@ -1,27 +1,45 @@
-# Laravel PHP Framework
+# InventoryMis project based on Laravel
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Including system with basic functions and extended mis system, with which can user fetches the trends of business and makes correct decisions.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Functions of extended system are as following:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+##商品计划：
+	商品走势：商品分类、名称、进货计划、销售计划、评分，可以进入查看商品进货／销售的趋势
+		进货计划：查看商品进货／销售趋势页面：表格形式展示：
+			商品名称、分类、类型（品牌）、月总营业额、月总利润、月销量、查看趋势
+			趋势包括：进货、销售、营业额、利润额，可以设置进货计划（减少进货、增加进货）
+		销售计划：类别按类别下总销量排序
+			类别、商品名称、月销量、月利润、查看类别占比（上下箭头，对比上月），可以设置主推／赠送／保持不变
+		商品评分：
+			列出商品分类、商品名称、利润趋势、口碑
+				利润趋势：按利润转换：评判是朝阳还是夕阳产业
+				口碑：按退货：查看退货数量、退货与销售比例，停止对某些商品的进货
+	分类走势：
+		分类名称、分类利润月走势、分类下不同商品的占比情况（饼图）		
+	品牌走势：
+		类型、查看该类型下不同商品的占比情况（饼图）
 
-## Official Documentation
+##进销计划：
+	查看进销计划
+	添加进销计划
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+##库存计划：
+	显示各仓库的商品数目，出入分别总次数
+	显示商品列表，可以查看详情：
+		在不同仓库的分布；
+		与月销量比较，判断是否过少／多，修改进货计划
 
-## Contributing
+##客户计划：
+	通过客户（销售商）月消费额、平均消费确定是否需要维护（送券、折扣）
+	计算客户的利润转化率，升星级
+	计算客户的退货件数，降星级
+	可能感兴趣的产品
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+##经营计划：
+	查看每个月的整体收／花，创建整体经营计划
+	整体客户消费额走势，计算是否整体上升／下降，创建整体经营计划
+	查看盈利情况，创建盈利目标
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+##员工计划：
+	查看员工完成目标情况
