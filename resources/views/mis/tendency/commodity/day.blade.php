@@ -15,7 +15,7 @@
                 <input type="hidden" class="form-control" id="id" name="id"
                        value="{{ $id }}"/>
 
-                <div id="myDiv">r</div>
+                {{--<div id="myDiv">r</div>--}}
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-8">
 
-                <canvas id="canvasDay" width="400" height="250"></canvas>
+                <canvas id="canvasDay" width="400" height="200"></canvas>
 
             </div>
             <div class="col-md-2"></div>

@@ -7,58 +7,23 @@ function commodityLineChartYear() {
     var YEARS = ["2012", "2013", "2014", "2015", "2016"];
 
     /* 销售部分 */
-    var ajaxCommodityD_sale = $.ajax({
-        url: "/miscommodity/info/commodity/sale/d/" + $("#id").val(),
-        async: false
-    }).responseText;
-
-    var commodityD_sale = ajaxCommodityD_sale.substr(1, strlen(ajaxCommodityD_sale) - 2);
-    commodityD_sale = commodityD_sale.split(",");
-
-
-    /* 进货部分 */
-    var ajaxCommodityD_purchase = $.ajax({
-        url: "/miscommodity/info/commodity/purchase/d/" + $("#id").val(),
-        async: false
-    }).responseText;
-
-    var commodityD_purchase = ajaxCommodityD_purchase.substr(1, strlen(ajaxCommodityD_purchase) - 2);
-    commodityD_purchase = commodityD_purchase.split(",");
-
-    function getMax(str, number) {
-        var max = 0;
-        for (var i = 0; i < number; i++) {
-            if (str[i] > max) {
-                max = str[i];
-            }
-        }
-        return max;
-    }
-
-    var maxD_sale = getMax(commodityD_sale, 31);
-    var maxD_purchase = getMax(commodityD_purchase, 31);
-    var maxD = 0;
-    if (maxD_sale >= maxD_purchase) {
-        maxD = maxD_sale;
-    }
-    else {
-        maxD = maxD_purchase;
-    }
-
-//    $("#myDiv").html(commodityD_sale);
-
-
-    var ajaxCommodityY = $.ajax({
+    var ajaxCommodityY_sale = $.ajax({
         url: "/miscommodity/info/commodity/sale/y/" + $("#id").val(),
         async: false
     }).responseText;
 
-    var commodityY = ajaxCommodityY.substr(1, strlen(ajaxCommodityY) - 2);
-    commodityY = commodityY.split(",");
+    var commodityY_sale = ajaxCommodityY_sale.substr(1, strlen(ajaxCommodityY_sale) - 2);
+    commodityY_sale = commodityY_sale.split(",");
 
-    var maxY = getMax(commodityY, 5);
 
-//    $("#myDiv").html(commodityY);
+    /* 进货部分 */
+    var ajaxCommodityY_purchase = $.ajax({
+        url: "/miscommodity/info/commodity/purchase/y/" + $("#id").val(),
+        async: false
+    }).responseText;
+
+    var commodityY_purchase = ajaxCommodityY_purchase.substr(1, strlen(ajaxCommodityY_purchase) - 2);
+    commodityY_purchase = commodityY_purchase.split(",");
 
     function getMax(str, number) {
         var max = 0;
@@ -69,6 +34,19 @@ function commodityLineChartYear() {
         }
         return max;
     }
+
+    var maxY_sale = getMax(commodityY_sale, 31);
+    var maxY_purchase = getMax(commodityY_purchase, 31);
+    var maxY = 0;
+    if (maxY_sale >= maxY_purchase) {
+        maxY = maxY_sale;
+    }
+    else {
+        maxY = maxY_purchase;
+    }
+
+//    $("#myDiv").html(commodityD_sale);
+
 
     function strlen(str) {
         var len;
@@ -97,10 +75,12 @@ function commodityLineChartYear() {
         data: {
             labels: YEARS,
             datasets: [{
-                label: "商品",
-                data: commodityY,
-                fill: false,
+                label: "商品销售",
+                data: commodityY_sale,
                 borderDash: [5, 5],
+            }, {
+                label: "商品进货",
+                data: commodityY_purchase,
             }]
         },
         options: {

@@ -6,14 +6,23 @@ function commodityLineChartMonth() {
 
     var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    var ajaxCommodityM = $.ajax({url: "/miscommodity/info/commodity/m/" + $("#id").val(), async: false}).responseText;
+    /* 销售部分 */
+    var ajaxCommodityM_sale = $.ajax({
+        url: "/miscommodity/info/commodity/sale/m/" + $("#id").val(),
+        async: false
+    }).responseText;
 
-    var commodityM = ajaxCommodityM.substr(1, strlen(ajaxCommodityM) - 2);
-    commodityM = commodityM.split(",");
+    var commodityM_sale = ajaxCommodityM_sale.substr(1, strlen(ajaxCommodityM_sale) - 2);
+    commodityM_sale = commodityM_sale.split(",");
 
-    var maxM = getMax(commodityM, 12);
+    /* 进货部分 */
+    var ajaxCommodityM_purchase = $.ajax({
+        url: "/miscommodity/info/commodity/purchase/m/" + $("#id").val(),
+        async: false
+    }).responseText;
 
-//    $("#myDiv").html(commodityM);
+    var commodityM_purchase = ajaxCommodityM_purchase.substr(1, strlen(ajaxCommodityM_purchase) - 2);
+    commodityM_purchase = commodityM_purchase.split(",");
 
     function getMax(str, number) {
         var max = 0;
@@ -24,6 +33,18 @@ function commodityLineChartMonth() {
         }
         return max;
     }
+
+    var maxM_sale = getMax(commodityM_sale, 31);
+    var maxM_purchase = getMax(commodityM_purchase, 31);
+    var maxM = 0;
+    if (maxM_sale >= maxM_purchase) {
+        maxM = maxM_sale;
+    }
+    else {
+        maxM = maxM_purchase;
+    }
+
+    $("#myDiv").html(commodityM_sale);
 
     function strlen(str) {
         var len;
@@ -52,10 +73,12 @@ function commodityLineChartMonth() {
         data: {
             labels: MONTHS,
             datasets: [{
-                label: "商品",
-                data: commodityM,
-                fill: false,
+                label: "商品销售",
+                data: commodityM_sale,
                 borderDash: [5, 5],
+            }, {
+                label: "商品进货",
+                data: commodityM_purchase,
             }]
         },
         options: {
