@@ -5,7 +5,10 @@ Including system with basic functions and extended mis system, with which can us
 Functions of extended system are as following:
 
 ##商品计划：
-	商品走势：商品分类、名称、进货计划、销售计划、评分，可以进入查看商品进货／销售的趋势
+	商品列表：
+		显示商品、分类信息以及商品趋势。
+	商品走势：
+		内容：商品分类、名称、进货计划、销售计划、评分，可以进入查看商品进货／销售的趋势
 		进货计划：查看商品进货／销售趋势页面：表格形式展示：
 			商品名称、分类、类型（品牌）、月总营业额、月总利润、月销量、查看趋势
 			趋势包括：进货、销售、营业额、利润额，可以设置进货计划（减少进货、增加进货）
