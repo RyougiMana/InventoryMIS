@@ -42,24 +42,14 @@
                         <tbody>
                         @foreach($misCommodityList as $commodity)
                             <tr>
-                                <td>{{ $commodity->name }}</td>
+                                <td>{{ $commodity->commodity_name }}</td>
+                                <td>{{ $commodity->commodity_parent }}</td>
+                                <td>{{ $commodity->commodity_classification }}</td>
+                                <td>{{ $commodity->purchase_plan }}</td>
+                                <td>{{ $commodity->sale_plan }}</td>
+                                <td>{{ $commodity->star }}</td>
                             </tr>
-                            @for($i=0; $i<count($misCommodityList); $i++)
-                                <tr>
-                                    <td>{{ $commodityList[$i]->id }}</td>
-                                    <td>{{ $commodityList[$i]->name }}</td>
-                                    <td>{{ $commodityParentList[$i]->name }}</td>
-                                    <td>{{ $commodityList[$i]->classification }}</td>
-                                    <td>{{ $commodityList[$i]->count }}</td>
-                                    <td>{{ $commodityList[$i]->purchase_price }}</td>
-                                    <td>{{ $commodityList[$i]->retail_price }}</td>
-                                    <td>{{ $commodityList[$i]->recent_purchase_price }}</td>
-                                    <td>{{ $commodityList[$i]->recent_retail_price }}</td>
-                                    <td>
-                                        <a href="/miscommodity/tendency/commodity/y/{{ $commodityList[$i]->id }}">查看</a>
-                                    </td>
-                                </tr>
-                            @endfor
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
