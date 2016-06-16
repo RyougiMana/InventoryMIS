@@ -10,7 +10,9 @@
             <div class="col-md-8">
                 <h4>商品列表</h4>
 
-                <p>展示商品及商品分类的详细信息,选择商品及商品分类查看趋势.</p>
+                <p>展示商品、商品分类的基本信息.</p>
+
+                <p>展示商品在不同时间维度下的进货销售情况.</p>
             </div>
         </div>
     </div>
@@ -51,7 +53,7 @@
                                     <th>售价</th>
                                     <th>最近进价</th>
                                     <th>最近售价</th>
-                                    <th>查看趋势</th>
+                                    <th>进货/销售情况</th>
                                 </tr>
                                 </thead>
                                 @if(count($commodityList) != 0)
@@ -68,7 +70,7 @@
                                             <td>{{ $commodityList[$i]->recent_purchase_price }}</td>
                                             <td>{{ $commodityList[$i]->recent_retail_price }}</td>
                                             <td>
-                                                <a href="/miscommodity/tendency/commodity/y/{{ $commodityList[$i]->id }}">查看趋势</a>
+                                                <a href="/miscommodity/tendency/commodity/y/{{ $commodityList[$i]->id }}">查看</a>
                                             </td>
                                         </tr>
                                     @endfor

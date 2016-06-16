@@ -254,6 +254,9 @@ create table promotion_combo_items(
 create table mis_commodities(
 	id int primary key auto_increment, 
 	commodity_id int not null,
+    commodity_name varchar(45) not null,
+    commodity_parent varchar(45) not null,
+    commodity_classification varchar(45) not null,
     purchase_plan int not null, -- 0：减少进货；1：保持不变；2：增加进货
     sale_plan int not null, -- 0:设置赠送；1:保持不变；2:设置主推
     star int not null, -- 0, 1, 2, 3, 4

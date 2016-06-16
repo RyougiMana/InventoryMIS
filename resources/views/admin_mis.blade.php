@@ -25,9 +25,9 @@
                    aria-expanded="false">商品计划 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/miscommoditydisplay">商品列表</a></li>
-                    <li><a href="/miscommoditytendency">商品趋势</a></li>
-                    <li><a href="#">商品份额</a></li>
-                    <li><a href="#">商品计划</a></li>
+                    <li><a href="/miscommoditytendency">商品走势</a></li>
+                    <li><a href="#">分类走势</a></li>
+                    <li><a href="#">品牌走势</a></li>
                 </ul>
             </li>
             <li>

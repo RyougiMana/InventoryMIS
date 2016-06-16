@@ -45,23 +45,23 @@ Route::get('stock/{id}', 'StockController@show');
 Route::post('stock/create', 'StockController@store');
 
 /* mis */
-Route::get('miscommoditydisplay', 'MisCommodityController@display');
-Route::get('miscommoditytendency', 'MisCommodityController@tendency');
+Route::get('miscommoditydisplay', 'MisCommodityDisplayController@display');
+Route::get('miscommoditytendency', 'MisCommodityTendencyController@tendency');
 
 /* get information */
-Route::get('miscommodity/info/commodity/{id}', 'MisCommodityController@getCommodityInfo');
+Route::get('miscommodity/info/commodity/{id}', 'MisCommodityDisplayController@getCommodityInfo');
 
-Route::get('miscommodity/info/commodity/sale/y/{id}', 'MisCommodityController@getCommoditySaleInfoYear');
-Route::get('miscommodity/info/commodity/sale/m/{id}', 'MisCommodityController@getCommoditySaleInfoMonth');
-Route::get('miscommodity/info/commodity/sale/d/{id}', 'MisCommodityController@getCommoditySaleInfoDay');
+Route::get('miscommodity/info/commodity/sale/y/{id}', 'MisCommodityDisplayController@getCommoditySaleInfoYear');
+Route::get('miscommodity/info/commodity/sale/m/{id}', 'MisCommodityDisplayController@getCommoditySaleInfoMonth');
+Route::get('miscommodity/info/commodity/sale/d/{id}', 'MisCommodityDisplayController@getCommoditySaleInfoDay');
 
-Route::get('miscommodity/info/commodity/purchase/y/{id}', 'MisCommodityController@getCommodityPurchaseInfoYear');
-Route::get('miscommodity/info/commodity/purchase/m/{id}', 'MisCommodityController@getCommodityPurchaseInfoMonth');
-Route::get('miscommodity/info/commodity/purchase/d/{id}', 'MisCommodityController@getCommodityPurchaseInfoDay');
+Route::get('miscommodity/info/commodity/purchase/y/{id}', 'MisCommodityDisplayController@getCommodityPurchaseInfoYear');
+Route::get('miscommodity/info/commodity/purchase/m/{id}', 'MisCommodityDisplayController@getCommodityPurchaseInfoMonth');
+Route::get('miscommodity/info/commodity/purchase/d/{id}', 'MisCommodityDisplayController@getCommodityPurchaseInfoDay');
 
 /* get tendency view */
-Route::get('miscommodity/tendency/commodity/y/{id}', 'MisCommodityController@getCommodityTendencyYear');
-Route::get('miscommodity/tendency/commodity/m/{id}', 'MisCommodityController@getCommodityTendencyMonth');
-Route::get('miscommodity/tendency/commodity/d/{id}', 'MisCommodityController@getCommodityTendencyDay');
+Route::get('miscommodity/tendency/commodity/y/{id}', 'MisCommodityDisplayController@getCommodityTendencyYear');
+Route::get('miscommodity/tendency/commodity/m/{id}', 'MisCommodityDisplayController@getCommodityTendencyMonth');
+Route::get('miscommodity/tendency/commodity/d/{id}', 'MisCommodityDisplayController@getCommodityTendencyDay');
 
-Route::get('miscommodity/info/classification/{id}', 'MisCommodityController@getClassificationInfo');
+Route::get('miscommodity/info/classification/{id}', 'MisCommodityDisplayController@getClassificationInfo');

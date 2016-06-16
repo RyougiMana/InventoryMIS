@@ -8,9 +8,11 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>库存单据管理</h4>
+                <h4>商品走势</h4>
 
-                <p>展示商品及商品分类的详细信息</p>
+                <p>展示商品的分类、名称、进货计划、销售计划、评分.</p>
+
+                <p>可以进入查看进货计划、销售计划、评分的详细情况.</p>
             </div>
         </div>
     </div>
@@ -20,28 +22,46 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
 
-                <ul class="nav nav-tabs">
-                    <li><a href="#commodity" tabindex="-1" data-toggle="tab">
-                            商品</a>
-                    </li>
-                    <li><a href="#commodity-classification" tabindex="-1" data-toggle="tab">
-                            商品分类</a>
-                    </li>
-                </ul>
-                <br/>
-                <br/>
-
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="commodity">
-                        <div class="row-fluid">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6"></div>
-                        </div>
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        商品
                     </div>
-
-                    <div class="tab-pane fade in" id="commodity-classification">
-
-                    </div>
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>分类</th>
+                            <th>类型</th>
+                            <th>进货计划</th>
+                            <th>销售计划</th>
+                            <th>评分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($misCommodityList as $commodity)
+                            <tr>
+                                <td>{{ $commodity->name }}</td>
+                            </tr>
+                            @for($i=0; $i<count($misCommodityList); $i++)
+                                <tr>
+                                    <td>{{ $commodityList[$i]->id }}</td>
+                                    <td>{{ $commodityList[$i]->name }}</td>
+                                    <td>{{ $commodityParentList[$i]->name }}</td>
+                                    <td>{{ $commodityList[$i]->classification }}</td>
+                                    <td>{{ $commodityList[$i]->count }}</td>
+                                    <td>{{ $commodityList[$i]->purchase_price }}</td>
+                                    <td>{{ $commodityList[$i]->retail_price }}</td>
+                                    <td>{{ $commodityList[$i]->recent_purchase_price }}</td>
+                                    <td>{{ $commodityList[$i]->recent_retail_price }}</td>
+                                    <td>
+                                        <a href="/miscommodity/tendency/commodity/y/{{ $commodityList[$i]->id }}">查看</a>
+                                    </td>
+                                </tr>
+                            @endfor
+                        </tbody>
+                    </table>
                 </div>
 
 

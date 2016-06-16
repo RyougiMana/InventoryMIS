@@ -8,13 +8,12 @@ use App\Http\Requests;
 
 use App\Commodity;
 use App\CommodityParent;
-use App\PurchaseReceiptItem;
-use App\SaleReceiptItem;
 
 use Carbon\Carbon;
 
-class MisCommodityController extends Controller
+class MisCommodityDisplayController extends Controller
 {
+    /* 商品列表 */
     public function display()
     {
         /* get all parents and every parent's commodities amount */
@@ -45,11 +44,6 @@ class MisCommodityController extends Controller
     {
         $parent = CommodityParent::findOrFail($id);
         return view('mis.commodity_classification_tendency', compact('parent', 'id'));
-    }
-
-    public function tendency()
-    {
-        return view('mis.commodity_tendency', compact('id'));
     }
 
     public function getCommodityInfo($id)
