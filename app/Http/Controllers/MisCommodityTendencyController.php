@@ -37,12 +37,14 @@ class MisCommodityTendencyController extends Controller
                 $input['commodity_id'] = $id;
 
                 /* commodity name */
-                $commoditySet = Commodity::where('id', $id)->all();
+                $commoditySet = Commodity::where('id', $id)
+                    ->get();
                 $input['commodity_name'] = $commoditySet[0]['name'];
                 $input['commodity_classification'] = $commoditySet[0]['classification'];
 
                 /* commodity classification */
-                $commodityParentSet = CommodityParent::where('id', $commoditySet[0]['parent_id']);
+                $commodityParentSet = CommodityParent::where('id', $commoditySet[0]['parent_id'])
+                    ->get();
                 $input['commodity_parent'] = $commodityParentSet[0]['name'];
 
                 $input['purchase_plan'] = $this->getPurchasePlan($id);
@@ -53,7 +55,53 @@ class MisCommodityTendencyController extends Controller
         }
 
         /* get mis commodity list */
-        $misCommodityList = MisCommodity::all();
+        $misCommodityListUnprocessed = MisCommodity::all();
+        $misCommodityList = [];
+
+        foreach ($misCommodityListUnprocessed as $commodity) {
+            $purchasePlan = $commodity['purchase_plan'];
+            $salePlan = $commodity['sale_plan'];
+            $star = $commodity['star'];
+
+            if ($purchasePlan == 0) {
+                $commodity['purchase_plan'] = '减少进货';
+            } else if ($purchasePlan == 1) {
+                $commodity['purchase_plan'] = '保持不变';
+            } else if ($purchasePlan == 2) {
+                $commodity['purchase_plan'] = '增加进货';
+            } else {
+                $commodity['purchase_plan'] = '无法处理';
+            }
+
+            if ($salePlan == 0) {
+                $commodity['sale_plan'] = '建议赠送';
+            } else if ($salePlan == 1) {
+                $commodity['sale_plan'] = '保持不变';
+            } else if ($salePlan == 2) {
+                $commodity['sale_plan'] = '建议主推';
+            } else {
+                $commodity['sale_plan'] = '无法处理';
+            }
+
+            if ($star == 0) {
+                $commodity['star'] = '一星';
+            } else if ($star == 1) {
+                $commodity['star'] = '二星';
+            } else if ($star == 2) {
+                $commodity['star'] = '三星';
+            } else if ($star == 3) {
+                $commodity['star'] = '四星';
+            } else if ($star == 4) {
+                $commodity['star'] = '五星';
+            } else if ($star == 5) {
+                $commodity['star'] = '六星';
+            } else {
+                $commodity['star'] = '无法处理';
+            }
+
+            array_push($misCommodityList, $commodity);
+        }
+
         return $misCommodityList;
 
     }
@@ -82,6 +130,23 @@ class MisCommodityTendencyController extends Controller
     sale_plan int not null, -- 0:设置赠送；1:保持不变；2:设置主推
     star int not null, -- 0, 1, 2, 3, 4
      */
+
+
+    /* return views */
+    public function showPurchasePlan($id)
+    {
+        return view('mis.tendency.purchaseplan');
+    }
+
+    public function showSalePlan($id)
+    {
+        return view('mis.tendency.saleplan');
+    }
+
+    public function showStar($id)
+    {
+        return view('mis.tendency.star');
+    }
 
 
 }

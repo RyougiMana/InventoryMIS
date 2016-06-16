@@ -64,4 +64,11 @@ Route::get('miscommodity/tendency/commodity/y/{id}', 'MisCommodityDisplayControl
 Route::get('miscommodity/tendency/commodity/m/{id}', 'MisCommodityDisplayController@getCommodityTendencyMonth');
 Route::get('miscommodity/tendency/commodity/d/{id}', 'MisCommodityDisplayController@getCommodityTendencyDay');
 
-Route::get('miscommodity/info/classification/{id}', 'MisCommodityDisplayController@getClassificationInfo');
+/* get purchase plan view */
+Route::get('miscommodity/purchaseplan/{id}', 'MisCommodityTendencyController@showPurchasePlan');
+/* get sale plan view */
+Route::get('miscommodity/saleplan/{id}', 'MisCommodityTendencyController@showSalePlan');
+/* get star view */
+Route::get('miscommodity/star/{id}', 'MisCommodityTendencyController@showStar');
+
+
