@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>商品走势</h4>
+                <h4>进货计划</h4>
 
                 <p>展示商品的分类、名称、进货计划、销售计划、评分.</p>
 
@@ -31,12 +31,14 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th>商品名称、分类、类型（品牌）、、、、</th>
                             <th>名称</th>
                             <th>分类</th>
                             <th>类型</th>
-                            <th>进货计划</th>
-                            <th>销售计划</th>
-                            <th>评分</th>
+                            <th>月总营业额</th>
+                            <th>月总利润</th>
+                            <th>月销量</th>
+                            <th>查看趋势</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,5 +77,5 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/receipt.js') }}"></script>
+    <script src="{{ asset('js/commodity.js') }}"></script>
 @stop

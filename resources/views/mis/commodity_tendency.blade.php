@@ -75,5 +75,5 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/receipt.js') }}"></script>
+    <script src="{{ asset('js/commodity.js') }}"></script>
 @stop

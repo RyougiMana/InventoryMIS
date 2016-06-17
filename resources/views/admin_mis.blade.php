@@ -26,8 +26,11 @@
                 <ul class="dropdown-menu">
                     <li><a href="/miscommoditydisplay">商品列表</a></li>
                     <li><a href="/miscommoditytendency">商品走势</a></li>
-                    <li><a href="#">分类走势</a></li>
-                    <li><a href="#">品牌走势</a></li>
+
+                    <li><a href="/mis/commodity/comparison">商品比较</a></li>
+                    <li><a href="/mis/commodity/ranking">商品评分</a></li>
+                    <li><a href="/mis/commodity/classification">分类走势</a></li>
+                    <li><a href="/mis/commodity/brand">品牌走势</a></li>
                 </ul>
             </li>
             <li>
