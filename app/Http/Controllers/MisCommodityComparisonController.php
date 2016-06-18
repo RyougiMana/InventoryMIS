@@ -16,18 +16,6 @@ class MisCommodityComparisonController extends Controller
 {
     public function index()
     {
-        /* get all parents and every parent's commodities amount */
-        $parentList = CommodityParent::where('is_deleted', 0)
-            ->orderby('updated_at', 'desc')
-            ->get();
-        foreach ($parentList as $parent) {
-            $commoditiesOfParent = Commodity::where('is_deleted', 0)
-                ->where('parent_id', $parent['id'])
-                ->get();
-            $parent['child_count'] = count($commoditiesOfParent);
-        }
-
-        /* get all commodities and their parents */
         $commodityList = Commodity::where('is_deleted', 0)
             ->orderby('updated_at', 'desc')
             ->get();
@@ -37,12 +25,14 @@ class MisCommodityComparisonController extends Controller
             array_push($commodityParentList, $parent);
         }
 
-        return view('mis.commodity.comparison', compact('parentList', 'commodityList', 'commodityParentList'));
+        return view('mis.commodity.comparison', compact('commodityList', 'commodityParentList'));
     }
 
-    public function makeComparison($idArray)
+    public function makeComparison(Request $request)
     {
-        dd($idArray);
+        $checkboxes = $request->input('check_commodity');
+        /* value parsing of checkbox in Laravel */
+        return 1;
     }
 
 }

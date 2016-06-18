@@ -74,4 +74,4 @@ Route::get('miscommodity/star/{id}', 'MisCommodityTendencyController@showStar');
 
 /* lately defined demands */
 Route::get('mis/commodity/comparison', 'MisCommodityComparisonController@index');
-Route::get('mis/commodity/comparison/make/{idArray}', 'MisCommodityComparisonController@makeComparison');
+Route::post('mis/commodity/comparison/make', 'MisCommodityComparisonController@makeComparison');

@@ -9,5 +9,10 @@ function makeComparison() {
         if (id[i].checked)
             value.push(id[i].value);
     }
-    window.location = '/mis/commodity/comparison/make/' + value.toString();
+    if (value.length == 0) {
+        value.push(-1);
+    }
+
+    alert(value);
+//    window.location = '/mis/commodity/comparison/make/' + value.toString();
 }
