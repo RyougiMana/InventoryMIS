@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Commodity;
 use App\CommodityParent;
+use App\PurchaseReceiptItem;
+use App\SaleReceiptItem;
 
 use Carbon\Carbon;
 
@@ -169,7 +171,8 @@ class MisCommodityDisplayController extends Controller
     public function getCommodityTendencyYear($id)
     {
         $commodity = Commodity::findOrFail($id);
-        return view('mis.tendency.commodity.year', compact('commodity', 'id'));
+        return view('mis.commodity.tendency_show', compact('commodity', 'id'));
+        //TODO  return view('mis.tendency.commodity.year', compact('commodity', 'id'));
     }
 
     public function getCommodityTendencyMonth($id)

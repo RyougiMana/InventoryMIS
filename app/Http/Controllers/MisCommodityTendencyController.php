@@ -22,7 +22,7 @@ class MisCommodityTendencyController extends Controller
     public function tendency()
     {
         $misCommodityList = $this->init();
-        return view('mis.commodity_tendency', compact('id', 'misCommodityList'));
+        return view('mis.commodity.tendency', compact('id', 'misCommodityList'));
     }
 
     private function init()

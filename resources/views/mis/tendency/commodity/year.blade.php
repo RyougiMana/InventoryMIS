@@ -27,19 +27,19 @@
 
                 <div class="btn-group" role="group">
 
-                    <form method="get" action="/miscommodity/tendency/commodity/y/{{ $id }}" accept-charset="UTF-8"
+                    <form method="get" action="/mis/commodity/tendency/commodity/y/{{ $id }}" accept-charset="UTF-8"
                           class="form-horizontal">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-default">年</button>
                     </form>
 
-                    <form method="get" action="/miscommodity/tendency/commodity/m/{{ $id }}" accept-charset="UTF-8"
+                    <form method="get" action="/mis/commodity/tendency/commodity/m/{{ $id }}" accept-charset="UTF-8"
                           class="form-horizontal">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-default">月</button>
                     </form>
 
-                    <form method="get" action="/miscommodity/tendency/commodity/d/{{ $id }}" accept-charset="UTF-8"
+                    <form method="get" action="/mis/commodity/tendency/commodity/d/{{ $id }}" accept-charset="UTF-8"
                           class="form-horizontal">
                         {{ csrf_field() }}
                         <button type="submit" class="btn btn-default">日</button>

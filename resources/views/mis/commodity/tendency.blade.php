@@ -13,6 +13,8 @@
                 <p>展示商品的分类、名称、进货计划、销售计划、评分.</p>
 
                 <p>可以进入查看进货计划、销售计划、评分的详细情况.</p>
+
+                <p>展示商品在不同时间维度下的进货销售情况.</p>
             </div>
         </div>
     </div>
@@ -37,6 +39,7 @@
                             <th>进货计划</th>
                             <th>销售计划</th>
                             <th>评分</th>
+                            <th>进销走势</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,6 +59,9 @@
                                 <td>
                                     {{ $commodity->star }}
                                     <a href="/miscommodity/star/{{ $commodity->commodity_id }}">查看</a>
+                                </td>
+                                <td>
+                                    <a href="/mis/commodity/tendency/commodity/y/{{ $commodity->id }}">查看</a>
                                 </td>
                             </tr>
                         @endforeach

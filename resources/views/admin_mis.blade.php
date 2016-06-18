@@ -24,9 +24,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">商品计划 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/miscommoditydisplay">商品列表</a></li>
-                    <li><a href="/miscommoditytendency">商品走势</a></li>
-
+                    <li><a href="/mis/commodity/tendency">商品走势</a></li>
                     <li><a href="/mis/commodity/comparison">商品比较</a></li>
                     <li><a href="/mis/commodity/ranking">商品评分</a></li>
                     <li><a href="/mis/commodity/classification">分类走势</a></li>

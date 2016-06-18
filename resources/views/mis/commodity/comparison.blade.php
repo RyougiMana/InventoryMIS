@@ -46,35 +46,31 @@
                                 <th>商品名称</th>
                                 <th>商品分类</th>
                                 <th>类型</th>
-                                <th>数量</th>
-                                <th>进价</th>
-                                <th>售价</th>
-                                <th>最近进价</th>
-                                <th>最近售价</th>
+                                <th>总销量</th>
+                                <th>总销售额</th>
+                                <th>总利润</th>
+                                <th>利润占比</th>
                                 <th>加入对比</th>
                             </tr>
                             </thead>
-                            @if(count($commodityList) != 0)
+                            @foreach($commodityList as $commodity)
                                 <tbody>
-                                @for($i=0; $i<count($commodityList); $i++)
                                     <tr>
-                                        <td>{{ $commodityList[$i]->id }}</td>
-                                        <td>{{ $commodityList[$i]->name }}</td>
-                                        <td>{{ $commodityParentList[$i]->name }}</td>
-                                        <td>{{ $commodityList[$i]->classification }}</td>
-                                        <td>{{ $commodityList[$i]->count }}</td>
-                                        <td>{{ $commodityList[$i]->purchase_price }}</td>
-                                        <td>{{ $commodityList[$i]->retail_price }}</td>
-                                        <td>{{ $commodityList[$i]->recent_purchase_price }}</td>
-                                        <td>{{ $commodityList[$i]->recent_retail_price }}</td>
+                                        <td>{{ $commodity->id }}</td>
+                                        <td>{{ $commodity->name }}</td>
+                                        <td>{{ $commodity->parent_name }}</td>
+                                        <td>{{ $commodity->classification }}</td>
+                                        <td>{{ $commodity->sale_count }}</td>
+                                        <td>{{ $commodity->sale_sum }}</td>
+                                        <td>{{ $commodity->profit }}</td>
+                                        <td>{{ $commodity->profit_quota }}</td>
                                         <td>
-                                            <input type="checkbox" id="check_commodity{{ $commodityList[$i]->id }}"
-                                                   name="check_commodity[]" value={{ $commodityList[$i]->id }}>
+                                            <input type="checkbox" id="check_commodity{{ $commodity->id }}"
+                                                   name="check_commodity[]" value={{ $commodity->id }}>
                                         </td>
                                     </tr>
-                                @endfor
                                 </tbody>
-                            @endif
+                            @endforeach
                         </table>
                     </div>
                 </form>
