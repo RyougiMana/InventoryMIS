@@ -64,6 +64,7 @@
                         <th>商品价格</th>
                         <th>商品数量</th>
                         <th>商品总价</th>
+                        <th>是否退货</th>
                         <th>添加时间</th>
                         <th>更新时间</th>
                     </tr>
@@ -76,6 +77,11 @@
                             <td>{{ $items[$i]->commodity_price }}</td>
                             <td>{{ $items[$i]->commodity_count }}</td>
                             <td>{{ $items[$i]->commodity_sum }}</td>
+                            @if($items[$i]->is_back == 0)
+                                <td>否</td>
+                            @else
+                                <td>是</td>
+                            @endif
                             <td>{{ $items[$i]->created_at }}</td>
                             <td>{{ $items[$i]->updated_at }}</td>
                         </tr>

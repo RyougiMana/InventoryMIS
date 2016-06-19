@@ -306,7 +306,7 @@ $(document).ready(function () {
                 "August", "September", "October", "November", "December"],
             datasets: [{
                 type: 'line',
-                label: '利润占比' + commodityName[0],
+                label: '利润转换' + commodityName[0],
                 backgroundColor: colors[0],
                 data: c_profitQuota[0],
                 borderColor: 'white',
@@ -322,14 +322,14 @@ $(document).ready(function () {
                 "August", "September", "October", "November", "December"],
             datasets: [{
                 type: 'line',
-                label: '利润占比' + commodityName[0],
+                label: '利润转换' + commodityName[0],
                 backgroundColor: colors[0],
                 data: c_profitQuota[0],
                 borderColor: 'white',
                 borderWidth: 2
             }, {
                 type: 'line',
-                label: '利润占比' + commodityName[1],
+                label: '利润转换' + commodityName[1],
                 backgroundColor: colors[1],
                 data: c_profitQuota[1],
                 borderColor: 'white',
@@ -345,21 +345,21 @@ $(document).ready(function () {
                 "August", "September", "October", "November", "December"],
             datasets: [{
                 type: 'line',
-                label: '利润占比' + commodityName[0],
+                label: '利润转换' + commodityName[0],
                 backgroundColor: colors[0],
                 data: c_profitQuota[0],
                 borderColor: 'white',
                 borderWidth: 2
             }, {
                 type: 'line',
-                label: '利润占比' + commodityName[1],
+                label: '利润转换' + commodityName[1],
                 backgroundColor: colors[1],
                 data: c_profitQuota[1],
                 borderColor: 'white',
                 borderWidth: 2
             }, {
                 type: 'line',
-                label: '利润占比' + commodityName[2],
+                label: '利润转换' + commodityName[2],
                 backgroundColor: colors[2],
                 data: c_profitQuota[2],
                 borderColor: 'white',
@@ -375,28 +375,28 @@ $(document).ready(function () {
                 "August", "September", "October", "November", "December"],
             datasets: [{
                 type: 'line',
-                label: '利润占比' + commodityName[0],
+                label: '利润转换' + commodityName[0],
                 backgroundColor: colors[0],
                 data: c_profitQuota[0],
                 borderColor: 'white',
                 borderWidth: 2
             }, {
                 type: 'line',
-                label: '利润占比' + commodityName[1],
+                label: '利润转换' + commodityName[1],
                 backgroundColor: colors[1],
                 data: c_profitQuota[1],
                 borderColor: 'white',
                 borderWidth: 2
             }, {
                 type: 'line',
-                label: '利润占比' + commodityName[2],
+                label: '利润转换' + commodityName[2],
                 backgroundColor: colors[2],
                 data: c_profitQuota[2],
                 borderColor: 'white',
                 borderWidth: 2
             }, {
                 type: 'line',
-                label: '利润占比' + commodityName[3],
+                label: '利润转换' + commodityName[3],
                 backgroundColor: colors[3],
                 data: c_profitQuota[3],
                 borderColor: 'white',
@@ -429,7 +429,7 @@ $(document).ready(function () {
             responsive: true,
             title: {
                 display: true,
-                text: '产品利润占比比较'
+                text: '产品利润转换比较'
             }
         }
     });

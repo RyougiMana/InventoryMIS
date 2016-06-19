@@ -104,6 +104,7 @@ class SaleItemController extends Controller
         $input['commodity_count'] = $this->str_trim($request->commodity_count);
         $input['commodity_price'] = $this->str_trim($request->commodity_price);
         $input['commodity_sum'] = $input['commodity_count'] * $input['commodity_price'];
+        $input['is_back'] = 0;
 
         /* modify sum in the receipt by adding sum of item created */
         $receipt = SaleReceipt::find($id);

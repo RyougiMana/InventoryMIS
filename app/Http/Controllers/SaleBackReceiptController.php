@@ -140,12 +140,17 @@ class SaleBackReceiptController extends Controller
         $receipt->save();
 
         /* delete the item of the sale receipt */
-        $query = DB::table('sale_receipt_items')
-            ->where('salereceipt_id', $input['salereceipt_id'])
-            ->where('commodity_id', $input['commodity_id']);
-        $query->delete();
+//        $query = DB::table('sale_receipt_items')
+//            ->where('salereceipt_id', $input['salereceipt_id'])
+//            ->where('commodity_id', $input['commodity_id']);
+//        $query->delete();
         //first() and delete() these functions execute the code.
         //So first assign your conditions to a variable and then execute them separately.
+        $query = SaleReceiptItem::where('salereceipt_id', $input['salereceipt_id'])
+            ->where('commodity_id', $input['commodity_id'])
+            ->first();
+        $query['is_back'] = 1;
+        $query->save();
 
         /* update the money customer (should receive) */
         $customer = Customer::findOrFail($receipt['saler_id']);

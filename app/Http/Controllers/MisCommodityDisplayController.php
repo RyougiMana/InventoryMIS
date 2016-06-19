@@ -174,22 +174,4 @@ class MisCommodityDisplayController extends Controller
         return view('mis.commodity.tendency_show', compact('commodity', 'id'));
     }
 
-    public function getCommodityTendencyMonth($id)
-    {
-        $commodity = Commodity::findOrFail($id);
-        return view('mis.tendency.commodity.month', compact('commodity', 'id'));
-    }
-
-    public function getCommodityTendencyDay($id)
-    {
-        $commodity = Commodity::findOrFail($id);
-        return view('mis.tendency.commodity.day', compact('commodity', 'id'));
-    }
-
-    public function getClassificationInfo($id)
-    {
-        $parent = CommodityParent::findOrFail($id);
-        return $parent;
-    }
-
 }

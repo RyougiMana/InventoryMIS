@@ -71,7 +71,10 @@ Route::get('miscommodity/saleplan/{id}', 'MisCommodityTendencyController@showSal
 Route::get('miscommodity/star/{id}', 'MisCommodityTendencyController@showStar');
 
 
-/* lately defined demands */
+/* 商品比较 */
 Route::get('mis/commodity/comparison', 'MisCommodityComparisonController@index');
 Route::post('mis/commodity/comparison/make', 'MisCommodityComparisonController@makeComparison');
 Route::get('mis/commodity/comparison/make/info/{id}', 'MisCommodityComparisonController@getCommodityMonth');
+
+/* 商品评分 */
+Route::get('mis/commodity/ranking', 'MisCommodityRankingController@index');

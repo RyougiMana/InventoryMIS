@@ -67,7 +67,7 @@
                         <th>商品价格</th>
                         <th>商品总价</th>
                         <th>添加时间</th>
-                        <th>更新时间</th>
+                        <th>是否已退货</th>
                         <th>退货</th>
                     </tr>
                     </thead>
@@ -80,18 +80,22 @@
                             <td>{{ $items[$i]->commodity_price }}</td>
                             <td>{{ $items[$i]->commodity_sum }}</td>
                             <td>{{ $items[$i]->created_at }}</td>
-                            <td>{{ $items[$i]->updated_at }}</td>
-                            <td>
-                                <form method="post" action="/purchaseback/create/{{ $receipt->id }}"
-                                      accept-charset="UTF-8" class="form-horizontal">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" class="form-control" name="purchasereceipt_id"
-                                           value="{{ $receipt->id }}"/>
-                                    <input type="hidden" class="form-control" name="commodity_id"
-                                           value="{{ $items[$i]->commodity_id }}"/>
-                                    <button type="submit" class="btn btn-default btn-xs">退货</button>
-                                </form>
-                            </td>
+                            @if($items[$i]->is_back == 0)
+                                <td>否</td>
+                                <td>
+                                    <form method="post" action="/purchaseback/create/{{ $receipt->id }}"
+                                          accept-charset="UTF-8" class="form-horizontal">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" class="form-control" name="purchasereceipt_id"
+                                               value="{{ $receipt->id }}"/>
+                                        <input type="hidden" class="form-control" name="commodity_id"
+                                               value="{{ $items[$i]->commodity_id }}"/>
+                                        <button type="submit" class="btn btn-default btn-xs">退货</button>
+                                    </form>
+                                </td>
+                            @else
+                                <td>是</td>
+                            @endif
                         </tr>
                     @endfor
                     </tbody>

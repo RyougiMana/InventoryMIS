@@ -98,6 +98,7 @@ create table purchase_receipt_items(
     commodity_sum double not null,
     created_at datetime,
     updated_at datetime,
+    is_back int, 
     foreign key (purchasereceipt_id) references purchase_receipts(id),
     foreign key (commodity_id) references commodities(id)
 );
@@ -136,6 +137,7 @@ create table sale_receipt_items(
     commodity_sum double not null,
     created_at datetime,
     updated_at datetime,
+    is_back int not null, 
     foreign key (salereceipt_id) references sale_receipts(id),
     foreign key (commodity_id) references commodities(id)
 );

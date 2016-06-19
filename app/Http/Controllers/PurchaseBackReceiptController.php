@@ -140,12 +140,18 @@ class PurchaseBackReceiptController extends Controller
         $receipt->save();
 
         /* delete the item of the purchase receipt */
-        $query = DB::table('purchase_receipt_items')
-            ->where('purchasereceipt_id', $input['purchasereceipt_id'])
-            ->where('commodity_id', $input['commodity_id']);
-        $query->delete();
+//        $query = DB::table('purchase_receipt_items')
+//            ->where('purchasereceipt_id', $input['purchasereceipt_id'])
+//            ->where('commodity_id', $input['commodity_id']);
+//        $query->delete();
         //first() and delete() these functions execute the code.
         //So first assign your conditions to a variable and then execute them separately.
+        /* => change the purchase receipt item to delete into is_back = 1 */
+        $query = PurchaseReceiptItem::where('purchasereceipt_id', $input['purchasereceipt_id'])
+            ->where('commodity_id', $input['commodity_id'])
+            ->first();
+        $query['is_back'] = 1;
+        $query->save();
 
         /* update the money customer (should receive) */
         $customer = Customer::findOrFail($receipt['supplier_id']);
