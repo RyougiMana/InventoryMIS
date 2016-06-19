@@ -172,7 +172,6 @@ class MisCommodityDisplayController extends Controller
     {
         $commodity = Commodity::findOrFail($id);
         return view('mis.commodity.tendency_show', compact('commodity', 'id'));
-        //TODO  return view('mis.tendency.commodity.year', compact('commodity', 'id'));
     }
 
     public function getCommodityTendencyMonth($id)

@@ -12,6 +12,8 @@
 
                 <p>商品可以显示折线图的属性：销售件数、总营业额、总利润额、利润占比.</p>
 
+                <input type="hidden" class="form-control" id="id"
+                       value="{{ $idStr }}"/>
             </div>
         </div>
     </div>
@@ -22,6 +24,12 @@
             <div class="col-md-8">
                 <div>
                     <canvas id="canvas"></canvas>
+                </div>
+                <br/>
+                <br/>
+
+                <div>
+                    <canvas id="profitCanvas"></canvas>
                 </div>
             </div>
             <div class="col-md-2"></div>
