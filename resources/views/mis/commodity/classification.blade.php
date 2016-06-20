@@ -20,47 +20,42 @@
         <div class="row-fluid">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-
-                <form method="post" action="/mis/commodity/comparison/make" accept-charset="UTF-8"
-                      class="form-horizontal">
-                    {{ csrf_field() }}
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">
-                            商品分类
-                        </div>
-                        <!-- Table -->
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>商品分类</th>
-                                <th>商品种类数</th>
-                                <th>最高销量商品</th>
-                                <th>最高销量</th>
-                                <th>查看详情</th>
-                            </tr>
-                            </thead>
-                            @for($i=0; $i<count($parentList); $i++)
-                                <tbody>
-                                <tr>
-                                    <td>{{ $parentList[$i]->name }}</td>
-                                    <td>{{ $parentList[$i]->commodity_count }}</td>
-                                    @if(count($parentList[$i]->max_commodity) != 0)
-                                        @for($j=0; $j<count($parentList[$i]->max_commodity); $j++)
-                                            <td>{{ $parentList[$i]->max_commodity[$j]['name'] }}</td>
-                                        @endfor
-                                    @else
-                                        <td>暂时没有售出商品</td>
-                                    @endif
-                                    <td>{{ $parentList[$i]->max_count }}</td>
-                                    <td>
-                                        <a href="/mis/commodity/classification/{{ $parentList[$i]->id }}">查看详情</a></td>
-                                </tr>
-                                </tbody>
-                            @endfor
-                        </table>
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        商品分类
                     </div>
-                </form>
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>商品分类</th>
+                            <th>商品种类数</th>
+                            <th>最高销量商品</th>
+                            <th>最高销量</th>
+                            <th>查看详情</th>
+                        </tr>
+                        </thead>
+                        @for($i=0; $i<count($parentList); $i++)
+                            <tbody>
+                            <tr>
+                                <td>{{ $parentList[$i]->name }}</td>
+                                <td>{{ $parentList[$i]->commodity_count }}</td>
+                                @if(count($parentList[$i]->max_commodity) != 0)
+                                    @for($j=0; $j<count($parentList[$i]->max_commodity); $j++)
+                                        <td>{{ $parentList[$i]->max_commodity[$j]['name'] }}</td>
+                                    @endfor
+                                @else
+                                    <td>暂时没有售出商品</td>
+                                @endif
+                                <td>{{ $parentList[$i]->max_count }}</td>
+                                <td>
+                                    <a href="/mis/commodity/classification/{{ $parentList[$i]->id }}">查看详情</a></td>
+                            </tr>
+                            </tbody>
+                        @endfor
+                    </table>
+                </div>
                 <div class="col-md-2"></div>
             </div>
         </div>
