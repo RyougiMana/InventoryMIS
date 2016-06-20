@@ -79,5 +79,12 @@ Route::get('mis/commodity/comparison/make/info/{id}', 'MisCommodityComparisonCon
 /* 商品评分 */
 Route::get('mis/commodity/ranking', 'MisCommodityRankingController@index');
 
+/* 分类走势 */
+Route::get('mis/commodity/classification', 'MisCommodityClassificationController@index');
+Route::get('mis/commodity/classification/{id}', 'MisCommodityClassificationController@getClassificationInfo');
+
+/* 品牌走势 */
+Route::get('mis/commodity/brand', 'MisCommodityBrandController@index');
+
 /* 进货计划 */
 Route::post('mis/purchaseplan', 'MisPurchasePlanController@rankingCreate');
