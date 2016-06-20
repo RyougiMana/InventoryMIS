@@ -84,17 +84,17 @@ class MisCommodityTendencyController extends Controller
             }
 
             if ($star == 0) {
-                $commodity['star'] = '一星';
+                $commodity['star'] = '☆';
             } else if ($star == 1) {
-                $commodity['star'] = '二星';
+                $commodity['star'] = '☆☆';
             } else if ($star == 2) {
-                $commodity['star'] = '三星';
+                $commodity['star'] = '☆☆☆';
             } else if ($star == 3) {
-                $commodity['star'] = '四星';
+                $commodity['star'] = '☆☆☆☆';
             } else if ($star == 4) {
-                $commodity['star'] = '五星';
+                $commodity['star'] = '☆☆☆☆☆';
             } else if ($star == 5) {
-                $commodity['star'] = '六星';
+                $commodity['star'] = '☆☆☆☆☆☆';
             } else {
                 $commodity['star'] = '无法处理';
             }

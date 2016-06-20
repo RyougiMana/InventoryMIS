@@ -58,7 +58,6 @@
                                 </td>
                                 <td>
                                     {{ $commodity->star }}
-                                    <a href="/miscommodity/star/{{ $commodity->commodity_id }}">查看</a>
                                 </td>
                                 <td>
                                     <a href="/mis/commodity/tendency/commodity/y/{{ $commodity->id }}">查看</a>

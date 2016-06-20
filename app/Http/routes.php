@@ -78,3 +78,6 @@ Route::get('mis/commodity/comparison/make/info/{id}', 'MisCommodityComparisonCon
 
 /* 商品评分 */
 Route::get('mis/commodity/ranking', 'MisCommodityRankingController@index');
+
+/* 进货计划 */
+Route::post('mis/purchaseplan', 'MisPurchasePlanController@rankingCreate');

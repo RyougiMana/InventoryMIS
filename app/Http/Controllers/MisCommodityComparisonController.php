@@ -69,7 +69,7 @@ class MisCommodityComparisonController extends Controller
         $commodity['profit'] = $purchase_sum - $sale_sum;
         /* 利润占比计算方式:平均进价/平均零售价 */
         if ($purchase_count == 0 || $sale_count == 0) {
-            $commodity['profit_quota'] = 1;/* 无法计算 */
+            $commodity['profit_quota'] = 0.3;/* 无法计算 */
         } else {
             $commodity['profit_quota'] = number_format(($purchase_sum / $purchase_count) / ($sale_sum / $sale_count), 2, '.', '');
         }
@@ -139,7 +139,7 @@ class MisCommodityComparisonController extends Controller
         for ($i = 0; $i < 12; $i++) {
             $profit[$i] = $purchaseSum[$i] - $saleSum[$i];
             if ($purchaseCount[$i] == 0 || $saleCount[$i] == 0) {
-                $profitQuota[$i] = 1;/* 无法计算 */
+                $profitQuota[$i] = 0.3;/* 无法计算 */
             } else {
                 //        $profitQuota[$i] = number_format(($purchaseSum[$i] / $purchaseCount[$i]) / ($saleSum[$i] / $saleCount[$i]), 2, '.', '');
                 $profitQuota[$i] = ($purchaseSum[$i] / $purchaseCount[$i]) / ($saleSum[$i] / $saleCount[$i]);

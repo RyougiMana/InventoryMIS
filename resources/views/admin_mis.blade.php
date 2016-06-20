@@ -33,23 +33,19 @@
             </li>
             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">进销计划 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">进货计划</a></li>
+                    <li><a href="#">销售计划</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">库存计划 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#">库存情况</a></li>
                     <li><a href="#">商品进出</a></li>
                     <li><a href="#">采购计划</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">进销计划 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">进销趋势</a></li>
-                    <li><a href="#">商家偏好</a></li>
-                    <li><a href="#">商品评分</a></li>
-                    <li><a href="#">进销计划</a></li>
-                    <li><a href="#">折扣影响</a></li>
-                    <li><a href="#">趋势预测</a></li>
                 </ul>
             </li>
             <li>
