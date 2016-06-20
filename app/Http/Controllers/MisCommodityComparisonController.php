@@ -43,6 +43,7 @@ class MisCommodityComparisonController extends Controller
         $commodity['parent_name'] = $parent['name'];
 
         $purchaseItems = PurchaseReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $purchase_count = 0;
         $purchase_sum = 0;
@@ -54,6 +55,7 @@ class MisCommodityComparisonController extends Controller
         $commodity['purchase_sum'] = $purchase_sum;
 
         $saleItems = SaleReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $sale_count = 0;
         $sale_sum = 0;
@@ -115,6 +117,7 @@ class MisCommodityComparisonController extends Controller
         for ($i = 0; $i < 12; $i++) {
             /* get purchase count, sum */
             $purchaseItems = PurchaseReceiptItem::where('commodity_id', $id)
+                ->where('is_back', 0)
                 ->get();
             foreach ($purchaseItems as $item) {
                 if ($item['created_at']->month == ($i + 1) && ($item['created_at']->year == $currentYear)) {
@@ -125,6 +128,7 @@ class MisCommodityComparisonController extends Controller
 
             /* get sale count, sum */
             $saleItems = SaleReceiptItem::where('commodity_id', $id)
+                ->where('is_back', 0)
                 ->get();
             foreach ($saleItems as $item) {
                 if ($item['created_at']->month == ($i + 1) && ($item['created_at']->year == $currentYear)) {

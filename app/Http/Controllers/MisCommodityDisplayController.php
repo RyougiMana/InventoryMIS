@@ -60,6 +60,7 @@ class MisCommodityDisplayController extends Controller
         /* tendency during the past 5 years */
         $frequency = [0, 0, 0, 0, 0];
         $itemSet = SaleReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $current_year = Carbon::now()->year;
         foreach ($itemSet as $item) {
@@ -76,6 +77,7 @@ class MisCommodityDisplayController extends Controller
         /* tendency during 12 months in current year */
         $frequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         $itemSet = SaleReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         foreach ($itemSet as $item) {
             $created_at_year = $item['created_at']->year;
@@ -94,6 +96,7 @@ class MisCommodityDisplayController extends Controller
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         $itemSet = SaleReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;
@@ -116,6 +119,7 @@ class MisCommodityDisplayController extends Controller
         /* tendency during the past 5 years */
         $frequency = [0, 0, 0, 0, 0];
         $itemSet = PurchaseReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $current_year = Carbon::now()->year;
         foreach ($itemSet as $item) {
@@ -132,6 +136,7 @@ class MisCommodityDisplayController extends Controller
         /* tendency during 12 months in current year */
         $frequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         $itemSet = PurchaseReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         foreach ($itemSet as $item) {
             $created_at_year = $item['created_at']->year;
@@ -150,6 +155,7 @@ class MisCommodityDisplayController extends Controller
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         $itemSet = PurchaseReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $current_year = Carbon::now()->year;
         $current_month = Carbon::now()->month;

@@ -45,6 +45,7 @@ class MisCommodityRankingController extends Controller
         $commodity['parent_name'] = $parent['name'];
 
         $purchaseItems = PurchaseReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $purchase_count = 0;
         $purchase_sum = 0;
@@ -56,6 +57,7 @@ class MisCommodityRankingController extends Controller
         $commodity['purchase_sum'] = $purchase_sum;
 
         $saleItems = SaleReceiptItem::where('commodity_id', $id)
+            ->where('is_back', 0)
             ->get();
         $sale_count = 0;
         $sale_sum = 0;
@@ -103,6 +105,7 @@ class MisCommodityRankingController extends Controller
         foreach ($purchaseBackReceipts as $receipt) {
             $receiptId = $receipt['purchasereceipt_id'];
             $purchaseItems = PurchaseReceiptItem::where('purchasereceipt_id', $receiptId)
+                ->where('is_back', 0)
                 ->where('commodity_id', $id)
                 ->get();
             $purchaseItem = $purchaseItems[0];
@@ -114,6 +117,7 @@ class MisCommodityRankingController extends Controller
         foreach ($saleBackReceipts as $receipt) {
             $receiptId = $receipt['salereceipt_id'];
             $saleItems = SaleReceiptItem::where('salereceipt_id', $receiptId)
+                ->where('is_back', 0)
                 ->where('commodity_id', $id)
                 ->get();
             $saleItem = $saleItems[0];
@@ -196,6 +200,7 @@ class MisCommodityRankingController extends Controller
         for ($i = 0; $i < 2; $i++) {
             /* get purchase count, sum */
             $purchaseItems = PurchaseReceiptItem::where('commodity_id', $id)
+                ->where('is_back', 0)
                 ->get();
             foreach ($purchaseItems as $item) {
                 if ($item['created_at']->month == ($i + $currentMonth - 1) && ($item['created_at']->year == $currentYear)) {
@@ -206,6 +211,7 @@ class MisCommodityRankingController extends Controller
 
             /* get sale count, sum */
             $saleItems = SaleReceiptItem::where('commodity_id', $id)
+                ->where('is_back', 0)
                 ->get();
             foreach ($saleItems as $item) {
                 if ($item['created_at']->month == ($i + $currentMonth - 1) && ($item['created_at']->year == $currentYear)) {
