@@ -54,7 +54,7 @@
                                     @endif
                                     <td>{{ $parentList[$i]->max_count }}</td>
                                     <td>
-                                        <a href="//{{ $parentList[$i]->id }}">查看详情</a></td>
+                                        <a href="/mis/commodity/classification/{{ $parentList[$i]->id }}">查看详情</a></td>
                                 </tr>
                                 </tbody>
                             @endfor

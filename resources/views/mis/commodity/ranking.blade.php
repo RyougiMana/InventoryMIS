@@ -76,13 +76,13 @@
                                         <input type="hidden" class="form-control" name="commodity_classification"
                                                value="{{ $commodity->classification }}"/>
 
-                                        @if(strlen($commodity->star) <= 2 * 3)
+                                        @if(strlen($commodity->star) <= 2 * 3 && ($commodity->purchase_plan != 0))
                                             <input type="hidden" class="form-control" name="purchase_plan"
                                                    value="0"/>
                                             <button type="submit" class="btn btn-default btn-xs">减少进货</button>
-                                        @elseif(strlen($commodity->star) == 5 * 3)
+                                        @elseif(strlen($commodity->star) == 5 * 3 && ($commodity->purchase_plan != 2))
                                             <input type="hidden" class="form-control" name="purchase_plan"
-                                                   value="3"/>
+                                                   value="2"/>
                                             <button type="submit" class="btn btn-default btn-xs">增加进货</button>
                                         @endif
 

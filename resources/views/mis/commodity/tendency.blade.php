@@ -48,17 +48,9 @@
                                 <td>{{ $commodity->commodity_name }}</td>
                                 <td>{{ $commodity->commodity_parent }}</td>
                                 <td>{{ $commodity->commodity_classification }}</td>
-                                <td>
-                                    {{ $commodity->purchase_plan }}
-                                    <a href="/miscommodity/purchaseplan/{{ $commodity->commodity_id }}">查看</a>
-                                </td>
-                                <td>
-                                    {{ $commodity->sale_plan }}
-                                    <a href="/miscommodity/saleplan/{{ $commodity->commodity_id }}">查看</a>
-                                </td>
-                                <td>
-                                    {{ $commodity->star }}
-                                </td>
+                                <td>{{ $commodity->purchase_plan }}</td>
+                                <td>{{ $commodity->sale_plan }}</td>
+                                <td>{{ $commodity->star }}</td>
                                 <td>
                                     <a href="/mis/commodity/tendency/commodity/y/{{ $commodity->id }}">查看</a>
                                 </td>

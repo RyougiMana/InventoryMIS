@@ -16,13 +16,18 @@ class MisPurchasePlanController extends Controller
     {
         $input = $request->all();
 
-        if ($input['purchase_plan'] == 'increase') {
-            $input['purchase_plan'] = 2;
-        } else if ($input['purchase_plan'] == 'decrease') {
-            $input['purchase_plan'] = 0;
-        }
-
+        /* create purchase plan */
         PurchasePlan::create($input);
+
+        /* change info in mis commodity */
+        $misCommodity = MisCommodity::where('commodity_id', $input['commodity_id'])
+            ->first();
+        if ($input['purchase_plan'] == 2) {
+            $misCommodity['purchase_plan'] = 2;
+        } else if ($input['purchase_plan'] == 0) {
+            $misCommodity['purchase_plan'] = 0;
+        }
+        $misCommodity->save();
 
         return view('mis.business.purchase_plan');
     }

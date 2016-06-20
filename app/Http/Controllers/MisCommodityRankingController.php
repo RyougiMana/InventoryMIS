@@ -105,7 +105,6 @@ class MisCommodityRankingController extends Controller
         foreach ($purchaseBackReceipts as $receipt) {
             $receiptId = $receipt['purchasereceipt_id'];
             $purchaseItems = PurchaseReceiptItem::where('purchasereceipt_id', $receiptId)
-                ->where('is_back', 0)
                 ->where('commodity_id', $id)
                 ->get();
             $purchaseItem = $purchaseItems[0];
@@ -117,7 +116,6 @@ class MisCommodityRankingController extends Controller
         foreach ($saleBackReceipts as $receipt) {
             $receiptId = $receipt['salereceipt_id'];
             $saleItems = SaleReceiptItem::where('salereceipt_id', $receiptId)
-                ->where('is_back', 0)
                 ->where('commodity_id', $id)
                 ->get();
             $saleItem = $saleItems[0];
@@ -181,6 +179,12 @@ class MisCommodityRankingController extends Controller
             ->first();
         $query['star'] = $star;
         $query->save();
+
+        /* get purchase plan and sale plan */
+        $misCommodity = MisCommodity::where('commodity_id', $id)
+            ->first();
+        $commodity['purchase_plan'] = $misCommodity['purchase_plan'];
+        $commodity['sale_plan'] = $misCommodity['sale_plan'];
 
         return $commodity;
     }
