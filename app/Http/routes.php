@@ -101,3 +101,10 @@ Route::get('mis/seller/tendency/avg/{id}', 'MisSellerController@getAverageInfo')
 
 Route::get('mis/seller/ranking', 'MisSellerController@ranking');
 Route::get('mis/seller/plan', 'MisSellerController@plan');
+
+/* 经营计划 */
+Route::get('mis/management/plan', 'MisManagementController@planIndex');
+Route::get('mis/management/purchase/info', 'MisManagementController@getPurchase');
+Route::get('mis/management/sale/info', 'MisManagementController@getSale');
+Route::get('mis/management/plan/create', 'MisManagementController@create');
+Route::post('mis/management/plan/create', 'MisManagementController@store');

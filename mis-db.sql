@@ -303,5 +303,12 @@ create table seller_plans(
     updated_at datetime, 
     foreign key (seller_id) references customers(id)
 );
-
+create table management_plans(
+	id int primary key auto_increment, 
+    sum double not null, 
+    start_time date not null, 
+    end_time date not null, 
+    created_at datetime, 
+    updated_at datetime
+);
 

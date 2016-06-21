@@ -277,13 +277,14 @@ class MisSellerController extends Controller
 
         }
 
-
         return view('mis.seller.ranking', compact('customerList'));
     }
 
     public function plan()
     {
-        return view('mis.seller.plan');
+        $planList = SellerPlan::all();
+
+        return view('mis.seller.plan', compact('planList'));
     }
 
 }

@@ -40,15 +40,6 @@
             </li>
             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">库存计划 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">库存情况</a></li>
-                    <li><a href="#">商品进出</a></li>
-                    <li><a href="#">采购计划</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">商家计划 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/mis/seller/tendency">商家走势</a></li>
@@ -58,9 +49,9 @@
             </li>
             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">操作员计划 <span class="caret"></span></a>
+                   aria-expanded="false">经营情况 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">业绩情况</a></li>
+                    <li><a href="/mis/management/plan">经营计划</a></li>
                 </ul>
             </li>
         </ul>

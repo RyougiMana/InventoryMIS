@@ -8,9 +8,9 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>客户计划</h4>
+                <h4>经营计划</h4>
 
-                <p>显示所有客户计划.</p>
+                <p>显示所有经营情况,并创建计划.</p>
 
             </div>
         </div>
@@ -20,13 +20,24 @@
         <div class="row-fluid">
             <div class="col-md-2"></div>
             <div class="col-md-8">
+                <div>
+                    <canvas id="canvas"></canvas>
+                </div>
+                <br/>
+                <br/>
 
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">
                         <div class="row-fluid">
                             <div class="col-md-2">
-                                客户计划
+                                经营计划
+                            </div>
+                            <div class="col-md-10">
+                                <form method="get" action="/mis/management/plan/create" accept-charset="UTF-8"
+                                      class="form-horizontal">
+                                    <button type="submit" class="btn btn-default btn-xs">创建经营计划</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -34,20 +45,18 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>名称</th>
-                            <th>操作</th>
+                            <th>销售额</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
                             <th>创建时间</th>
                         </tr>
                         </thead>
                         @foreach($planList as $plan)
                             <tbody>
                             <tr>
-                                <td>{{ $plan->seller_name }}</td>
-                                @if($plan->seller_plan == 0)
-                                    <td>赠送/折扣</td>
-                                @elseif($plan->seller_plan == 1)
-                                    <td>保持不变</td>
-                                @endif
+                                <td>{{ $plan->sum }}</td>
+                                <td>{{ $plan->start_time }}</td>
+                                <td>{{ $plan->end_time }}</td>
                                 <td>{{ $plan->created_at }}</td>
                             </tr>
                             </tbody>
@@ -66,5 +75,6 @@
 @stop
 
 @section('js-file')
-    <script src="{{ asset('js/mis/comparison.js') }}"></script>
+    <script src="{{ asset('chartjs/Chart.bundle.js') }}"></script>
+    <script src="{{ asset('js/mis/management_plan.js') }}"></script>
 @stop
