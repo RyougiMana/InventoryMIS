@@ -77,5 +77,5 @@
     <script src="{{ asset('js/commodity.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('chartjs/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('js/mis/tendency.js') }}"></script>
+    <script src="{{ asset('js/mis/commodity_tendency.js') }}"></script>
 @stop

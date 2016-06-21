@@ -12,7 +12,7 @@
 
                 <p>通过客户（销售商）月消费额、平均消费确定是否需要维护（送券、折扣）.</p>
 
-                <p>向客户推荐可能感兴趣的产品.</p>
+                <p>向客户推荐可能感兴趣的产品（由客户购买最多的商品关联产生）.</p>
             </div>
         </div>
     </div>
@@ -67,9 +67,20 @@
                                                    value="1"/>
                                             <button type="submit" class="btn btn-default btn-xs">保持不变</button>
                                         </td>
+                                    @else
+                                        <td>-</td>
                                     @endif
                                 </form>
-                                <td>ss</td>
+                                <td>
+                                    <a href="/mis/seller/tendency/show/{{ $customer->id }}">查看</a>
+                                </td>
+                                <td>
+                                    @if(count($customer['commodities']) != 0)
+                                        @foreach($customer['commodities'] as $commodity)
+                                            {{ $commodity->name }}
+                                        @endforeach
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
                         @endforeach

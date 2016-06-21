@@ -92,7 +92,12 @@ Route::post('mis/purchaseplan', 'MisPurchasePlanController@planCreate');
 Route::get('mis/saleplan', 'MisSalePlanController@index');
 Route::post('mis/saleplan', 'MisSalePlanController@planCreate');
 
-/* 商家计划 */
+/* 商家走势 */
 Route::get('mis/seller/tendency', 'MisSellerController@tendency');
+Route::post('mis/seller/plan/create', 'MisSellerController@makePlan');
+Route::get('mis/seller/tendency/show/{id}', 'MisSellerController@showTendency');
+Route::get('mis/seller/tendency/info/{id}', 'MisSellerController@getTendencyInfo');
+Route::get('mis/seller/tendency/avg/{id}', 'MisSellerController@getAverageInfo');
+
 Route::get('mis/seller/ranking', 'MisSellerController@ranking');
 Route::get('mis/seller/plan', 'MisSellerController@plan');
