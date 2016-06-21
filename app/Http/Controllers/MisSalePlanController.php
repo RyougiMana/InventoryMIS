@@ -8,13 +8,13 @@ use App\Http\Requests;
 use App\Commodity;
 use App\CommodityParent;
 use App\MisCommodity;
-use App\PurchasePlan;
+use App\SalePlan;
 
-class MisPurchasePlanController extends Controller
+class MisSalePlanController extends Controller
 {
     public function index()
     {
-        return view('mis.business.purchase_plan');
+        return view('mis.business.sale_plan');
     }
 
 
@@ -22,20 +22,20 @@ class MisPurchasePlanController extends Controller
     {
         $input = $request->all();
 
-        /* create purchase plan */
-        PurchasePlan::create($input);
+        /* create sale plan */
+        SalePlan::create($input);
 
         /* change info in mis commodity */
         $misCommodity = MisCommodity::where('commodity_id', $input['commodity_id'])
             ->first();
-        if ($input['purchase_plan'] == 2) {
-            $misCommodity['purchase_plan'] = 2;
-        } else if ($input['purchase_plan'] == 0) {
-            $misCommodity['purchase_plan'] = 0;
+        if ($input['sale_plan'] == 2) {
+            $misCommodity['sale_plan'] = 2;
+        } else if ($input['sale_plan'] == 0) {
+            $misCommodity['sale_plan'] = 0;
         }
         $misCommodity->save();
 
-        return redirect('/mis/purchaseplan');
+        return view('mis.business.sale_plan');
     }
 
 }

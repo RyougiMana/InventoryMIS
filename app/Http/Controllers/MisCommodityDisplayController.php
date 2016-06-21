@@ -10,6 +10,7 @@ use App\Commodity;
 use App\CommodityParent;
 use App\PurchaseReceiptItem;
 use App\SaleReceiptItem;
+use App\MisCommodity;
 
 use Carbon\Carbon;
 
@@ -66,7 +67,7 @@ class MisCommodityDisplayController extends Controller
         foreach ($itemSet as $item) {
             $created_at_year = $item['created_at']->year;
             if ($created_at_year >= ($current_year - 4)) {
-                $frequency[$created_at_year - $current_year + 4]++;
+                $frequency[$created_at_year - $current_year + 4] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -83,7 +84,7 @@ class MisCommodityDisplayController extends Controller
             $created_at_year = $item['created_at']->year;
             $created_at_month = $item['created_at']->month;
             if ($created_at_year == Carbon::now()->year) {
-                $frequency[$created_at_month]++;
+                $frequency[$created_at_month] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -108,7 +109,7 @@ class MisCommodityDisplayController extends Controller
             if ($created_at_year == $current_year &&
                 ($created_at_month == $current_month)
             ) {
-                $frequency[$created_at_day]++;
+                $frequency[$created_at_day] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -125,7 +126,7 @@ class MisCommodityDisplayController extends Controller
         foreach ($itemSet as $item) {
             $created_at_year = $item['created_at']->year;
             if ($created_at_year >= ($current_year - 4)) {
-                $frequency[$created_at_year - $current_year + 4]++;
+                $frequency[$created_at_year - $current_year + 4] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -142,7 +143,7 @@ class MisCommodityDisplayController extends Controller
             $created_at_year = $item['created_at']->year;
             $created_at_month = $item['created_at']->month;
             if ($created_at_year == Carbon::now()->year) {
-                $frequency[$created_at_month]++;
+                $frequency[$created_at_month] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -167,7 +168,7 @@ class MisCommodityDisplayController extends Controller
             if ($created_at_year == $current_year &&
                 ($created_at_month == $current_month)
             ) {
-                $frequency[$created_at_day]++;
+                $frequency[$created_at_day] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -176,7 +177,14 @@ class MisCommodityDisplayController extends Controller
     /* get commodity tendency views */
     public function getCommodityTendencyYear($id)
     {
-        $commodity = Commodity::findOrFail($id);
+        /* the input id is mis primary id */
+        $misCommodity = MisCommodity::findOrFail($id);
+
+        $commodity = Commodity::where('name', $misCommodity['commodity_name'])
+            ->get();
+        $commodity = $commodity[0];
+
+        $id = $commodity['id'];
         return view('mis.commodity.tendency_show', compact('commodity', 'id'));
     }
 

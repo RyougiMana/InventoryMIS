@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MisCommodity;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -67,11 +68,20 @@ class MisCommodityClassificationController extends Controller
 
         $currentYear = Carbon::now()->year;
 
+        $parentTotalCount = 0;
+
         for ($k = 0; $k < count($commodities); $k++) {
             $commodity = $commodities[$k];
 
             $purchaseSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             $saleSum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            /* 单件商品的销量,销售额等 */
+            $pSum = 0;
+            $pCount = 0;
+            $sSum = 0;
+            $sCount = 0;
+
             for ($i = 0; $i < 12; $i++) {
                 /* get purchase count, sum */
                 $purchaseItems = PurchaseReceiptItem::where('commodity_id', $commodity['id'])
@@ -80,6 +90,8 @@ class MisCommodityClassificationController extends Controller
                 foreach ($purchaseItems as $item) {
                     if ($item['created_at']->month == ($i + 1) && ($item['created_at']->year == $currentYear)) {
                         $purchaseSum[$i] += $item['commodity_sum'];
+                        $pSum += $item['commodity_sum'];
+                        $pCount += $item['commodity_count'];
                     }
                 }
 
@@ -90,18 +102,44 @@ class MisCommodityClassificationController extends Controller
                 foreach ($saleItems as $item) {
                     if ($item['created_at']->month == ($i + 1) && ($item['created_at']->year == $currentYear)) {
                         $saleSum[$i] += $item['commodity_sum'];
+                        $sSum += $item['commodity_sum'];
+                        $sCount += $item['commodity_count'];
                     }
                 }
 
                 /* get profit */
                 $commodityProfit[$i] = $saleSum[$i] - $purchaseSum[$i];
                 $profitTendency[$i] += $commodityProfit[$i];
+
+                $commodity['purchase_count'] = $pCount;
+                $commodity['purchase_sum'] = $pSum;
+                $commodity['sale_count'] = $sCount;
+                $commodity['sale_sum'] = $sSum;
+                $commodity['c_profit'] = $sSum - $pSum;
+
             }
 
+            $parentTotalCount += $commodity['sale_count'];
             $commodity['profit'] = $commodityProfit;
+
         }
 
-        return view('mis.commodity.classification_show', compact('parent', 'profitTendency'));
+        foreach ($commodities as $commodity) {
+            $commodity['sale_quota'] = number_format(($commodity['sale_count'] / $parentTotalCount), 2, '.', '');
+            if ($commodity['sale_count'] / $parentTotalCount > 0.3) {
+                $commodity['recommend_sale_plan'] = 2;
+            } else if ($commodity['sale_count'] / $parentTotalCount < 0.1) {
+                $commodity['recommend_sale_plan'] = 0;
+            } else {
+                $commodity['recommend_sale_plan'] = 1;
+            }
+
+            $misCommodity = MisCommodity::where('commodity_id', $commodity['id'])
+                ->first();
+            $commodity['sale_plan'] = $misCommodity['sale_plan'];
+        }
+
+        return view('mis.commodity.classification_show', compact('parent', 'profitTendency', 'commodities'));
     }
 
     public function getAjaxInfo($id)

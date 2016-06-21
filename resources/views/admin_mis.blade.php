@@ -34,8 +34,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">进销计划 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">进货计划</a></li>
-                    <li><a href="#">销售计划</a></li>
+                    <li><a href="/mis/purchaseplan">进货计划</a></li>
+                    <li><a href="/mis/saleplan">销售计划</a></li>
                 </ul>
             </li>
             <li>

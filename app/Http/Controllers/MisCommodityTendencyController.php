@@ -108,17 +108,17 @@ class MisCommodityTendencyController extends Controller
 
     private function getPurchasePlan($id)
     {
-        return 0;
+        return 1;
     }
 
     private function getSalePlan($id)
     {
-        return 0;
+        return 1;
     }
 
     private function getStar($id)
     {
-        return 0;
+        return 3;
     }
 
     /*

@@ -85,4 +85,9 @@ Route::get('mis/commodity/classification/{id}', 'MisCommodityClassificationContr
 Route::get('mis/commodity/classification/info/{id}', 'MisCommodityClassificationController@getAjaxInfo');
 
 /* 进货计划 */
-Route::post('mis/purchaseplan', 'MisPurchasePlanController@rankingCreate');
+Route::get('mis/purchaseplan', 'MisPurchasePlanController@index');
+Route::post('mis/purchaseplan', 'MisPurchasePlanController@planCreate');
+
+/* 销售计划 */
+Route::get('mis/saleplan', 'MisSalePlanController@index');
+Route::post('mis/saleplan', 'MisSalePlanController@planCreate');
