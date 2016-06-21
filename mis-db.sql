@@ -290,7 +290,8 @@ create table mis_sellers(
 	id int primary key auto_increment, 
     seller_id int not null, 
     seller_name varchar(45) not null, 
-    seller_plan int not null, -- 0: 赠送／折扣 1：保持不变 
+    seller_plan int not null, -- 0: 赠送／折扣 1：保持不变
+    star int not null, -- 0-4
     foreign key (seller_id) references customers(id)
 );
 create table seller_plans(

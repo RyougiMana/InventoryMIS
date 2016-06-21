@@ -8,7 +8,7 @@ class MisSeller extends Model
 {
     protected $table = 'mis_sellers';
 
-    protected $fillable = ['id', 'seller_id', 'seller_name', 'seller_plan'];
+    protected $fillable = ['id', 'seller_id', 'seller_name', 'seller_plan', 'star'];
 
     public $timestamps = false;
 }

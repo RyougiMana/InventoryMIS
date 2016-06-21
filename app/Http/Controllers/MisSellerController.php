@@ -40,6 +40,7 @@ class MisSellerController extends Controller
                 if ($receipt['created_at']->year == $currentYear) {
                     /* total sum */
                     $receiptItems = SaleReceiptItem::where('salereceipt_id', $receipt['id'])
+                        ->where('is_back', 0)
                         ->get();
                     foreach ($receiptItems as $item) {
                         /* sum */
@@ -72,6 +73,7 @@ class MisSellerController extends Controller
             $seller['seller_id'] = $customer['id'];
             $seller['seller_name'] = $customer['name'];
             $seller['seller_plan'] = 1;
+            $seller['star'] = 2;
             $sellerList = MisSeller::where('seller_id', $customer['id'])
                 ->get();
 
@@ -169,7 +171,114 @@ class MisSellerController extends Controller
 
     public function ranking()
     {
-        return view('mis.seller.ranking');
+        /* 一年总销售额,上月销售额,一年总退货件数,上月退货件数 */
+
+        $customerList = Customer::where('is_saler', 1)->get();
+
+        $currentYear = Carbon::now()->year;
+        $currentMonth = Carbon::now()->month;
+
+        foreach ($customerList as $customer) {
+            /* 平均月消费额为当年一至当时月份的平均月消费 */
+            $totalSum = 0;
+            $lastMonthSum = 0;
+            $totalCount = 0;
+            $lastMonthCount = 0;
+            $totalBackCount = 0;
+            $lastMonthBackCount = 0;
+            $receiptList = SaleReceipt::where('saler_id', $customer['id'])
+                ->get();
+            foreach ($receiptList as $receipt) {
+                if ($receipt['created_at']->year == $currentYear) {
+                    /* total sum */
+                    $receiptItems = SaleReceiptItem::where('salereceipt_id', $receipt['id'])
+                        ->where('is_back', 0)
+                        ->get();
+                    foreach ($receiptItems as $item) {
+                        /* sum */
+                        $totalSum += $item['commodity_sum'];
+                        $totalCount += $item['commodity_count'];
+                    }
+                    /* last month sum */
+                    if ($receipt['created_at']->month == $currentMonth) {
+                        foreach ($receiptItems as $item) {
+                            $lastMonthSum += $item['commodity_sum'];
+                            $lastMonthCount += $item['commodity_count'];
+                        }
+                    }
+
+                    /* back commodities count */
+                    $receiptBackItems = SaleReceiptItem::where('salereceipt_id', $receipt['id'])
+                        ->where('is_back', 1)
+                        ->get();
+                    foreach ($receiptBackItems as $item) {
+                        /* sum */
+                        $totalBackCount += $item['commodity_count'];
+
+                    }
+                    /* last month sum */
+                    if ($receipt['created_at']->month == $currentMonth) {
+                        foreach ($receiptBackItems as $item) {
+                            $lastMonthBackCount += $item['commodity_count'];
+                        }
+                    }
+
+                }
+            }
+
+            $customer['total_count'] = $totalCount;
+            $customer['last_month_count'] = $lastMonthCount;
+            $customer['total_sum'] = $totalSum;
+            $customer['last_month_sum'] = $lastMonthSum;
+            $customer['total_back_count'] = $totalBackCount;
+            $customer['last_month_back_count'] = $lastMonthBackCount;
+
+            if ($lastMonthCount == 0) {
+                $backRanking = 0;
+            } else if ($lastMonthBackCount / $lastMonthCount > 0.3) {
+                $backRanking = 0;
+            } else if ($lastMonthBackCount / $lastMonthCount > 0.1) {
+                $backRanking = 1;
+            } else {
+                $backRanking = 2;
+            }
+
+            if ($lastMonthSum > 50000) {
+                $sumRanking = 2;
+            } else if ($lastMonthSum > 20000) {
+                $sumRanking = 1;
+            } else {
+                $sumRanking = 0;
+            }
+
+            switch ($backRanking + $sumRanking) {
+                case 0:
+                    $customer['star'] = "☆";
+                    break;
+                case 1:
+                    $customer['star'] = "☆☆";
+                    break;
+                case 2:
+                    $customer['star'] = "☆☆☆";
+                    break;
+                case 3:
+                    $customer['star'] = "☆☆☆☆";
+                    break;
+                case 4:
+                    $customer['star'] = "☆☆☆☆☆";
+                    break;
+            }
+
+            /* update mis seller star information */
+            $toUpdate = MisSeller::where('seller_id', $customer['id'])
+                ->first();
+            $toUpdate['star'] = $backRanking + $sumRanking;
+            $toUpdate->save();
+
+        }
+
+
+        return view('mis.seller.ranking', compact('customerList'));
     }
 
     public function plan()
