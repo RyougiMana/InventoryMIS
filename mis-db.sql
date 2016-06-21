@@ -286,6 +286,21 @@ create table sale_plans(
     updated_at datetime, 
     foreign key (commodity_id) references commodities(id)
 );
-
+create table mis_sellers(
+	id int primary key auto_increment, 
+    seller_id int not null, 
+    seller_name varchar(45) not null, 
+    seller_plan int not null, -- 0: 赠送／折扣 1：保持不变 
+    foreign key (seller_id) references customers(id)
+);
+create table seller_plans(
+	id int primary key auto_increment, 
+    seller_id int not null, 
+	seller_name varchar(45) not null, 
+    seller_plan int not null, -- 0: 赠送／折扣 1：保持不变 
+    created_at datetime, 
+    updated_at datetime, 
+    foreign key (seller_id) references customers(id)
+);
 
 

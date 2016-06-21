@@ -51,8 +51,9 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">商家计划 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">商家排名</a></li>
-                    <li><a href="#">商家评分</a></li>
+                    <li><a href="/mis/seller/tendency">商家走势</a></li>
+                    <li><a href="/mis/seller/ranking">商家评级</a></li>
+                    <li><a href="/mis/seller/plan">商家计划</a></li>
                 </ul>
             </li>
             <li>
