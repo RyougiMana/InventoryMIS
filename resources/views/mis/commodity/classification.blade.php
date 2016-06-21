@@ -62,9 +62,9 @@
         <br/>
         <br/>
         <br/>
+    </div>
+@stop
 
-        @stop
-
-        @section('js-file')
-            <script src="{{ asset('js/mis/comparison.js') }}"></script>
+@section('js-file')
+    <script src="{{ asset('js/mis/comparison.js') }}"></script>
 @stop

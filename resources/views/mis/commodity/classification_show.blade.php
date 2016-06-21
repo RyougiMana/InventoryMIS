@@ -67,7 +67,7 @@
                                                value="{{ $commodity->name }}"/>
 
                                         <input type="hidden" class="form-control" name="commodity_parent"
-                                               value="{{ $commodity->parent_name }}"/>
+                                               value="{{ $parent->name }}"/>
 
                                         <input type="hidden" class="form-control" name="commodity_classification"
                                                value="{{ $commodity->classification }}"/>

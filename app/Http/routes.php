@@ -87,6 +87,8 @@ Route::get('mis/commodity/classification/info/{id}', 'MisCommodityClassification
 /* 进货计划 */
 Route::get('mis/purchaseplan', 'MisPurchasePlanController@index');
 Route::post('mis/purchaseplan', 'MisPurchasePlanController@planCreate');
+Route::get('mis/purchaseplan/create', 'MisPurchasePlanController@create');
+Route::post('mis/purchaseplan/create', 'MisPurchasePlanController@store');
 
 /* 销售计划 */
 Route::get('mis/saleplan', 'MisSalePlanController@index');

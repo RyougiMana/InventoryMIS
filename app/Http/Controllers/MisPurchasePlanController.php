@@ -14,9 +14,10 @@ class MisPurchasePlanController extends Controller
 {
     public function index()
     {
-        return view('mis.business.purchase_plan');
-    }
+        $planList = PurchasePlan::all();
 
+        return view('mis.business.purchase_plan', compact('planList'));
+    }
 
     public function planCreate(Request $request)
     {
@@ -35,6 +36,25 @@ class MisPurchasePlanController extends Controller
         }
         $misCommodity->save();
 
+        return redirect('/mis/purchaseplan');
+    }
+
+    public function create()
+    {
+
+        $parentList = CommodityParent::all();
+        $commodityList = [];
+        foreach ($parentList as $parent) {
+            $commodities = Commodity::where('parent_id', $parent['id'])
+                ->get();
+            array_push($commodityList, $commodities);
+        }
+
+        return view('mis.business.purchase_plan_create', compact('parentList', 'commodityList'));
+    }
+
+    public function store(Request $request)
+    {
         return redirect('/mis/purchaseplan');
     }
 

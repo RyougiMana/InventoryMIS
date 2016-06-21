@@ -14,7 +14,9 @@ class MisSalePlanController extends Controller
 {
     public function index()
     {
-        return view('mis.business.sale_plan');
+        $planList = SalePlan::all();
+
+        return view('mis.business.sale_plan', compact('planList'));
     }
 
 
@@ -35,7 +37,7 @@ class MisSalePlanController extends Controller
         }
         $misCommodity->save();
 
-        return view('mis.business.sale_plan');
+        return redirect('/mis/saleplan');
     }
 
 }
