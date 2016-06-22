@@ -84,7 +84,7 @@ class MisCommodityDisplayController extends Controller
             $created_at_year = $item['created_at']->year;
             $created_at_month = $item['created_at']->month;
             if ($created_at_year == Carbon::now()->year) {
-                $frequency[$created_at_month] += $item['commodity_count'];
+                $frequency[$created_at_month - 1] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -109,7 +109,7 @@ class MisCommodityDisplayController extends Controller
             if ($created_at_year == $current_year &&
                 ($created_at_month == $current_month)
             ) {
-                $frequency[$created_at_day] += $item['commodity_count'];
+                $frequency[$created_at_day - 1] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -143,7 +143,7 @@ class MisCommodityDisplayController extends Controller
             $created_at_year = $item['created_at']->year;
             $created_at_month = $item['created_at']->month;
             if ($created_at_year == Carbon::now()->year) {
-                $frequency[$created_at_month] += $item['commodity_count'];
+                $frequency[$created_at_month - 1] += $item['commodity_count'];
             }
         }
         return $frequency;
@@ -168,7 +168,7 @@ class MisCommodityDisplayController extends Controller
             if ($created_at_year == $current_year &&
                 ($created_at_month == $current_month)
             ) {
-                $frequency[$created_at_day] += $item['commodity_count'];
+                $frequency[$created_at_day - 1] += $item['commodity_count'];
             }
         }
         return $frequency;

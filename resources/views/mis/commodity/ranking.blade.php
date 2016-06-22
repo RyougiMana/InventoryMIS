@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="col-md-8">
-                <h4>商品走势</h4>
+                <h4>商品评分</h4>
 
                 <p>展示商品分类、商品名称、利润空间趋势、口碑.</p>
 
